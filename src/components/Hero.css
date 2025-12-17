@@ -1,0 +1,785 @@
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+    padding: 140px 0 80px;
+}
+
+/* ===================================
+   Background Effects - Enhanced
+   =================================== */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+        /* Subtle top glow - blue/purple blend */
+        radial-gradient(ellipse 80% 50% at 50% -5%, rgba(59, 130, 246, 0.18) 0%, transparent 50%),
+        /* Right side blue accent */
+        radial-gradient(ellipse 60% 40% at 85% 25%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
+        /* Subtle left accent */
+        radial-gradient(ellipse 50% 35% at 10% 60%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+        /* Very subtle bottom ambient */
+        radial-gradient(ellipse 100% 60% at 50% 100%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
+}
+
+.hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    animation: pulse 10s ease-in-out infinite;
+}
+
+/* Premium Glowing Orbs - Subtle Blue Focus */
+.hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    animation: floatSlow 15s ease-in-out infinite;
+}
+
+.hero-glow-1 {
+    width: 600px;
+    height: 600px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(99, 102, 241, 0.12) 100%);
+    top: -20%;
+    right: 0%;
+    animation-delay: 0s;
+}
+
+.hero-glow-2 {
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%);
+    bottom: -10%;
+    left: -5%;
+    animation-delay: 5s;
+}
+
+.hero-glow-3 {
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(59, 130, 246, 0.08) 100%);
+    top: 40%;
+    left: 30%;
+    animation-delay: 10s;
+}
+
+/* Particles - Enhanced */
+.particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: twinkle 4s ease-in-out infinite;
+    box-shadow: 0 0 8px rgba(139, 92, 246, 0.8), 0 0 16px rgba(139, 92, 246, 0.4);
+}
+
+/* Orbit Rings - Hidden (using orb-rings instead) */
+.orbit-container {
+    display: none;
+}
+
+.orbit {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(139, 92, 246, 0.12);
+    border-radius: 50%;
+    animation: rotate 25s linear infinite;
+}
+
+.orbit::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+    border-radius: 50%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.8), 0 0 40px rgba(139, 92, 246, 0.4);
+}
+
+.orbit-1 {
+    animation-duration: 18s;
+}
+
+.orbit-2 {
+    inset: 12%;
+    animation-duration: 24s;
+    animation-direction: reverse;
+    border-color: rgba(99, 102, 241, 0.12);
+}
+
+.orbit-2::after {
+    background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.8), 0 0 40px rgba(99, 102, 241, 0.4);
+}
+
+.orbit-3 {
+    inset: 25%;
+    animation-duration: 30s;
+    border-color: rgba(59, 130, 246, 0.1);
+}
+
+.orbit-3::after {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.4);
+}
+
+/* ===================================
+   Container - Premium Layout
+   =================================== */
+.hero-container {
+    position: relative;
+    z-index: 1;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--spacing-3xl);
+    align-items: center;
+}
+
+/* ===================================
+   Content - Premium Typography
+   =================================== */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+/* Badge - Premium Glass */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-accent);
+    width: fit-content;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    animation: borderGlow 4s ease-in-out infinite;
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+}
+
+.badge-dot {
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.8);
+}
+
+.badge-text {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* Title - Premium Typography */
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    perspective: 1000px;
+}
+
+.hero-title .title-line {
+    display: block;
+}
+
+.hero-title .word {
+    display: inline-block;
+    color: var(--color-text-primary);
+    text-shadow: 0 0 80px rgba(255, 255, 255, 0.1);
+}
+
+.hero-title .word.highlight {
+    background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 30%, #8b5cf6 60%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientMove 4s ease infinite, textGlow 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.3));
+}
+
+/* Subtitle - Refined */
+.hero-subtitle {
+    font-size: var(--font-size-lg);
+    color: rgba(148, 163, 184, 0.95);
+    max-width: 520px;
+    line-height: 1.8;
+    font-weight: 400;
+}
+
+.subtitle-accent {
+    color: #c4b5fd;
+    font-weight: 600;
+}
+
+/* Buttons - Premium Style */
+.hero-buttons {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-sm);
+}
+
+.btn-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.btn-arrow {
+    transition: transform var(--transition-base);
+}
+
+.btn-primary:hover .btn-arrow {
+    transform: translateX(6px);
+}
+
+/* Stats - Premium Glass Cards */
+.hero-stats {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    background: rgba(15, 15, 40, 0.5);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: var(--radius-xl);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    width: fit-content;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-number {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff 0%, #c4b5fd 50%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: var(--font-size-xs);
+    color: rgba(148, 163, 184, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, transparent, rgba(139, 92, 246, 0.4), transparent);
+}
+
+/* ===================================
+   Visual Section - Premium Orb
+   =================================== */
+.hero-visual {
+    position: relative;
+    height: 550px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Orb - Enhanced Premium */
+.hero-orb {
+    position: relative;
+    width: 360px;
+    height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.orb-core {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    position: relative;
+    background:
+        /* Top-left specular highlight */
+        radial-gradient(ellipse 40% 30% at 25% 20%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+        /* Secondary highlight */
+        radial-gradient(ellipse 30% 20% at 35% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+        /* Ambient fill from bottom - blue */
+        radial-gradient(circle at 50% 120%, rgba(59, 130, 246, 0.5) 0%, transparent 50%),
+        /* Core blue-purple glow */
+        radial-gradient(circle at 60% 70%, rgba(99, 102, 241, 0.4) 0%, transparent 45%),
+        /* Main gradient - blue to indigo (matching logo) */
+        linear-gradient(145deg,
+            #60a5fa 0%,
+            #3b82f6 15%,
+            #2563eb 30%,
+            #4f46e5 50%,
+            #6366f1 65%,
+            #4338ca 80%,
+            #312e81 100%);
+    box-shadow:
+        /* Inner glow - blue tones */
+        inset 0 -30px 60px rgba(59, 130, 246, 0.35),
+        inset 0 30px 50px rgba(255, 255, 255, 0.06),
+        inset 0 0 40px rgba(99, 102, 241, 0.25),
+        /* Outer glow layers - blue focused */
+        0 0 40px rgba(59, 130, 246, 0.6),
+        0 0 80px rgba(99, 102, 241, 0.4),
+        0 0 120px rgba(59, 130, 246, 0.25),
+        0 0 180px rgba(99, 102, 241, 0.15),
+        /* Ambient shadow */
+        0 20px 50px rgba(0, 0, 0, 0.4);
+    animation: orbPulse 6s ease-in-out infinite;
+}
+
+/* Glass reflection overlay */
+.orb-core::before {
+    content: '';
+    position: absolute;
+    top: 8%;
+    left: 15%;
+    width: 45%;
+    height: 35%;
+    background: linear-gradient(145deg,
+            rgba(255, 255, 255, 0.35) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            transparent 100%);
+    border-radius: 50%;
+    filter: blur(2px);
+}
+
+/* Bottom ambient reflection */
+.orb-core::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    right: 20%;
+    width: 25%;
+    height: 15%;
+    background: radial-gradient(ellipse,
+            rgba(167, 139, 250, 0.3) 0%,
+            transparent 70%);
+    border-radius: 50%;
+    filter: blur(8px);
+}
+
+@keyframes orbPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow:
+            inset 0 -30px 60px rgba(59, 130, 246, 0.35),
+            inset 0 30px 50px rgba(255, 255, 255, 0.06),
+            inset 0 0 40px rgba(99, 102, 241, 0.25),
+            0 0 40px rgba(59, 130, 246, 0.6),
+            0 0 80px rgba(99, 102, 241, 0.4),
+            0 0 120px rgba(59, 130, 246, 0.25),
+            0 0 180px rgba(99, 102, 241, 0.15),
+            0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    50% {
+        transform: scale(1.02);
+        box-shadow:
+            inset 0 -35px 70px rgba(59, 130, 246, 0.4),
+            inset 0 35px 60px rgba(255, 255, 255, 0.08),
+            inset 0 0 50px rgba(99, 102, 241, 0.3),
+            0 0 50px rgba(59, 130, 246, 0.7),
+            0 0 100px rgba(99, 102, 241, 0.5),
+            0 0 150px rgba(59, 130, 246, 0.3),
+            0 0 220px rgba(99, 102, 241, 0.2),
+            0 25px 60px rgba(0, 0, 0, 0.35);
+    }
+}
+
+.orb-ring {
+    position: absolute;
+    border: 1.5px solid;
+    border-radius: 50%;
+    animation: rotate 12s linear infinite;
+}
+
+.orb-ring-1 {
+    width: 300px;
+    height: 300px;
+    animation-duration: 12s;
+    border-color: rgba(167, 139, 250, 0.35);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+}
+
+.orb-ring-2 {
+    width: 340px;
+    height: 340px;
+    animation-duration: 18s;
+    animation-direction: reverse;
+    border-color: rgba(129, 140, 248, 0.25);
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.15);
+}
+
+.orb-ring-3 {
+    width: 380px;
+    height: 380px;
+    animation-duration: 25s;
+    border-color: rgba(96, 165, 250, 0.18);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.1);
+}
+
+.orb-glow {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle,
+            rgba(139, 92, 246, 0.5) 0%,
+            rgba(99, 102, 241, 0.3) 30%,
+            rgba(139, 92, 246, 0.15) 50%,
+            transparent 70%);
+    filter: blur(60px);
+    animation: glowPulse 6s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+
+/* Floating Cards - Premium Glass */
+.hero-card {
+    position: absolute;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: rgba(15, 15, 40, 0.75);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(139, 92, 246, 0.15);
+    animation: float 8s ease-in-out infinite;
+    transition: all var(--transition-base);
+}
+
+.hero-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(139, 92, 246, 0.3);
+}
+
+.hero-card-1 {
+    top: 40px;
+    left: -30px;
+    animation-delay: 0s;
+}
+
+.hero-card-2 {
+    bottom: 120px;
+    left: -10px;
+    animation-delay: 2s;
+}
+
+.hero-card-3 {
+    top: 70px;
+    right: -40px;
+    animation-delay: 4s;
+}
+
+.hero-card-4 {
+    bottom: 40px;
+    right: 0;
+    animation-delay: 6s;
+}
+
+.card-icon {
+    font-size: 1.8rem;
+    filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.6));
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.card-label {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.card-status {
+    font-size: var(--font-size-xs);
+    color: rgba(148, 163, 184, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card-status.active {
+    color: #34d399;
+    text-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
+}
+
+/* ===================================
+   Scroll Indicator - Premium
+   =================================== */
+.hero-scroll {
+    position: absolute;
+    bottom: var(--spacing-2xl);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 1.8s;
+    opacity: 0;
+}
+
+.scroll-mouse {
+    width: 28px;
+    height: 44px;
+    border: 2px solid rgba(139, 92, 246, 0.4);
+    border-radius: 22px;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    background: rgba(15, 15, 40, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+.scroll-wheel {
+    width: 4px;
+    height: 10px;
+    background: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 100%);
+    border-radius: 4px;
+    animation: pulse 1.5s ease-in-out infinite;
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.8);
+}
+
+.scroll-text {
+    font-size: var(--font-size-xs);
+    color: rgba(148, 163, 184, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+}
+
+/* ===================================
+   Responsive - Premium Adjustments
+   =================================== */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 120px 0 60px;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--spacing-2xl);
+    }
+
+    .hero-content {
+        align-items: center;
+    }
+
+    .hero-subtitle {
+        margin: 0 auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-stats {
+        justify-content: center;
+        margin: var(--spacing-xl) auto 0;
+    }
+
+    .hero-visual {
+        display: flex;
+        height: 380px;
+        transform: scale(0.8);
+    }
+
+    /* Smaller floating cards on tablet */
+    .hero-card {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .card-icon {
+        font-size: 1.4rem;
+    }
+
+    .card-label {
+        font-size: var(--font-size-xs);
+    }
+
+    .orbit-container {
+        opacity: 0.6;
+        transform: scale(0.75);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 100px 0 50px;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+    }
+
+    .hero-subtitle {
+        font-size: var(--font-size-base);
+        max-width: 90%;
+    }
+
+    .hero-badge {
+        font-size: var(--font-size-xs);
+        padding: 6px 14px;
+    }
+
+    /* Hide floating cards on mobile for cleaner look */
+    .hero-card {
+        display: none;
+    }
+
+    .hero-visual {
+        height: 300px;
+        transform: scale(0.65);
+        margin-top: -20px;
+    }
+
+    .hero-stats {
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+
+    .stat-number {
+        font-size: var(--font-size-base);
+    }
+
+    .stat-label {
+        font-size: 10px;
+    }
+
+    .hero-scroll {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 90px 0 40px;
+    }
+
+    .hero-title {
+        font-size: clamp(1.8rem, 9vw, 2.5rem);
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+        gap: var(--spacing-md);
+    }
+
+    .btn {
+        width: 100%;
+        padding: 14px 24px;
+        font-size: 0.9rem;
+    }
+
+    .hero-stats {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm) var(--spacing-md);
+        background: rgba(15, 15, 40, 0.6);
+    }
+
+    .stat-divider {
+        display: none;
+    }
+
+    .stat {
+        min-width: 70px;
+        text-align: center;
+    }
+
+    .hero-visual {
+        height: 260px;
+        transform: scale(0.55);
+        margin-top: -30px;
+    }
+
+    /* Subtle glow adjustments for mobile */
+    .hero-glow-1,
+    .hero-glow-2,
+    .hero-glow-3 {
+        transform: scale(0.6);
+        opacity: 0.7;
+    }
+
+    .orb-ring {
+        opacity: 0.5;
+    }
+}
