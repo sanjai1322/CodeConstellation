@@ -14,35 +14,35 @@ const Hero = () => {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // === ENTRANCE ANIMATIONS ===
+            // === ENTRANCE ANIMATIONS (Optimized for speed) ===
             // Animate title words
             gsap.fromTo('.hero-title .word',
-                { opacity: 0, y: 60, rotateX: -40 },
-                { opacity: 1, y: 0, rotateX: 0, duration: 1, stagger: 0.1, ease: 'power3.out', delay: 0.3 }
+                { opacity: 0, y: 40, rotateX: -30 },
+                { opacity: 1, y: 0, rotateX: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out', delay: 0.1 }
             );
 
             // Animate subtitle
             gsap.fromTo(subtitleRef.current,
-                { opacity: 0, y: 40 },
-                { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.8 }
+                { opacity: 0, y: 30 },
+                { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: 0.4 }
             );
 
             // Animate buttons
             gsap.fromTo('.hero-buttons .btn',
-                { opacity: 0, y: 30, scale: 0.9 },
-                { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.15, ease: 'back.out(1.5)', delay: 1 }
+                { opacity: 0, y: 20, scale: 0.95 },
+                { opacity: 1, y: 0, scale: 1, duration: 0.4, stagger: 0.1, ease: 'back.out(1.2)', delay: 0.5 }
             );
 
             // Animate floating cards
             gsap.fromTo('.hero-card',
-                { opacity: 0, scale: 0.5, rotation: -10 },
-                { opacity: 1, scale: 1, rotation: 0, duration: 0.8, stagger: 0.15, ease: 'elastic.out(1, 0.5)', delay: 1.2 }
+                { opacity: 0, scale: 0.7, rotation: -5 },
+                { opacity: 1, scale: 1, rotation: 0, duration: 0.5, stagger: 0.1, ease: 'elastic.out(1, 0.6)', delay: 0.6 }
             );
 
             // Animate badge
             gsap.fromTo('.hero-badge',
-                { opacity: 0, x: -50 },
-                { opacity: 1, x: 0, duration: 0.6, ease: 'power2.out', delay: 0.2 }
+                { opacity: 0, x: -30 },
+                { opacity: 1, x: 0, duration: 0.4, ease: 'power2.out', delay: 0.05 }
             );
 
             // Orb continuous animation
@@ -184,9 +184,9 @@ const Hero = () => {
                 <div className="hero-glow hero-glow-2"></div>
                 <div className="hero-glow hero-glow-3"></div>
 
-                {/* Floating Particles */}
+                {/* Floating Particles - Reduced for performance */}
                 <div className="particles">
-                    {[...Array(30)].map((_, i) => (
+                    {[...Array(12)].map((_, i) => (
                         <div key={i} className="particle" style={{
                             left: `${Math.random() * 100}%`,
                             top: `${Math.random() * 100}%`,

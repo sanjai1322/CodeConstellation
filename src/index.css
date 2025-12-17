@@ -638,4 +638,28 @@ ol {
     --font-size-hero: 2rem;
     --spacing-section: 3rem;
   }
+
+  /* Reduce animation complexity on mobile for better performance */
+  .btn-primary {
+    animation: none;
+  }
+
+  .glass,
+  .glass-strong {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
