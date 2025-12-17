@@ -13,154 +13,90 @@ const Hero = () => {
     const orbRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        // Check if mobile device
+        const isMobile = window.innerWidth <= 768;
+
         const ctx = gsap.context(() => {
-            // === ENTRANCE ANIMATIONS (Optimized for speed) ===
+            // === ENTRANCE ANIMATIONS (Fast & simple) ===
             // Animate title words
             gsap.fromTo('.hero-title .word',
-                { opacity: 0, y: 40, rotateX: -30 },
-                { opacity: 1, y: 0, rotateX: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out', delay: 0.1 }
+                { opacity: 0, y: 30 },
+                { opacity: 1, y: 0, duration: 0.5, stagger: 0.05, ease: 'power2.out', delay: 0.1 }
             );
 
             // Animate subtitle
             gsap.fromTo(subtitleRef.current,
-                { opacity: 0, y: 30 },
-                { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: 0.4 }
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', delay: 0.3 }
             );
 
             // Animate buttons
             gsap.fromTo('.hero-buttons .btn',
-                { opacity: 0, y: 20, scale: 0.95 },
-                { opacity: 1, y: 0, scale: 1, duration: 0.4, stagger: 0.1, ease: 'back.out(1.2)', delay: 0.5 }
-            );
-
-            // Animate floating cards
-            gsap.fromTo('.hero-card',
-                { opacity: 0, scale: 0.7, rotation: -5 },
-                { opacity: 1, scale: 1, rotation: 0, duration: 0.5, stagger: 0.1, ease: 'elastic.out(1, 0.6)', delay: 0.6 }
+                { opacity: 0, y: 15 },
+                { opacity: 1, y: 0, duration: 0.3, stagger: 0.08, ease: 'power2.out', delay: 0.4 }
             );
 
             // Animate badge
             gsap.fromTo('.hero-badge',
-                { opacity: 0, x: -30 },
-                { opacity: 1, x: 0, duration: 0.4, ease: 'power2.out', delay: 0.05 }
+                { opacity: 0, x: -20 },
+                { opacity: 1, x: 0, duration: 0.3, ease: 'power2.out', delay: 0.05 }
             );
 
-            // Orb continuous animation
-            gsap.to(orbRef.current, {
-                scale: 1.05,
-                duration: 2,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-            });
+            // Only run heavy animations on desktop
+            if (!isMobile) {
+                // Animate floating cards (desktop only)
+                gsap.fromTo('.hero-card',
+                    { opacity: 0, scale: 0.8 },
+                    { opacity: 1, scale: 1, duration: 0.4, stagger: 0.08, ease: 'power2.out', delay: 0.5 }
+                );
 
-            // === PREMIUM SCROLL ANIMATIONS ===
+                // Orb continuous animation (desktop only)
+                gsap.to(orbRef.current, {
+                    scale: 1.03,
+                    duration: 3,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                });
 
-            // Hero content parallax - fades and moves up on scroll
-            gsap.to('.hero-content', {
-                y: -100,
-                opacity: 0,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 1.5,
-                }
-            });
+                // === SCROLL ANIMATIONS (Desktop only) ===
+                gsap.to('.hero-content', {
+                    y: -80,
+                    opacity: 0,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.hero',
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 1.5,
+                    }
+                });
 
-            // Orb visual parallax - moves slower for depth effect
-            gsap.to('.hero-visual', {
-                y: -150,
-                scale: 0.8,
-                opacity: 0.3,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 2,
-                }
-            });
+                gsap.to('.hero-visual', {
+                    y: -100,
+                    scale: 0.9,
+                    opacity: 0.5,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.hero',
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 2,
+                    }
+                });
 
-            // Floating cards move at different speeds (parallax depth)
-            gsap.to('.hero-card:nth-child(1)', {
-                y: -200,
-                x: -50,
-                rotation: -15,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 1,
-                }
-            });
-
-            gsap.to('.hero-card:nth-child(2)', {
-                y: -250,
-                x: 30,
-                rotation: 10,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 1.5,
-                }
-            });
-
-            gsap.to('.hero-card:nth-child(3)', {
-                y: -180,
-                x: -20,
-                rotation: 8,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 2,
-                }
-            });
-
-            gsap.to('.hero-card:nth-child(4)', {
-                y: -220,
-                x: 40,
-                rotation: -12,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 1.8,
-                }
-            });
-
-            // Background glow parallax
-            gsap.to('.hero-glow', {
-                y: -80,
-                scale: 1.2,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 2.5,
-                }
-            });
-
-            // Stats bar slides up and fades
-            gsap.to('.hero-stats', {
-                y: -50,
-                opacity: 0,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: '60% top',
-                    end: 'bottom top',
-                    scrub: 1,
-                }
-            });
+                gsap.to('.hero-stats', {
+                    y: -30,
+                    opacity: 0,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.hero',
+                        start: '60% top',
+                        end: 'bottom top',
+                        scrub: 1,
+                    }
+                });
+            }
 
         }, heroRef);
 

@@ -676,7 +676,7 @@
 
 @media (max-width: 768px) {
     .hero {
-        padding: 100px 0 50px;
+        padding: 100px 0 30px;
     }
 
     .hero-title {
@@ -691,22 +691,66 @@
     .hero-badge {
         font-size: var(--font-size-xs);
         padding: 6px 14px;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
     }
 
-    /* Hide floating cards on mobile for cleaner look */
+    /* Hide floating cards on mobile */
     .hero-card {
         display: none;
     }
 
+    /* Planet visible and static on mobile */
     .hero-visual {
-        height: 320px;
-        transform: scale(0.75);
-        margin-top: 0;
+        height: 260px;
+        transform: none;
+        margin-top: 20px;
+    }
+
+    .hero-orb {
+        width: 240px;
+        height: 240px;
+    }
+
+    .orb-core {
+        width: 180px;
+        height: 180px;
+        animation: none !important;
+    }
+
+    /* Disable ALL animations on mobile for performance */
+    .orb-ring {
+        animation: none !important;
+        opacity: 0.4;
+    }
+
+    .orb-ring-1 {
+        width: 200px;
+        height: 200px;
+    }
+
+    .orb-ring-2 {
+        width: 220px;
+        height: 220px;
+    }
+
+    .orb-ring-3 {
+        width: 240px;
+        height: 240px;
+    }
+
+    .orb-glow {
+        width: 280px;
+        height: 280px;
+        filter: blur(20px);
+        animation: none !important;
     }
 
     .hero-stats {
         padding: var(--spacing-md);
         gap: var(--spacing-md);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
     }
 
     .stat-number {
@@ -721,59 +765,69 @@
         display: none;
     }
 
-    /* Performance optimizations for mobile */
+    /* Disable all heavy effects on mobile */
     .particles {
-        display: none;
+        display: none !important;
     }
 
-    .hero-glow {
-        filter: blur(50px);
-        opacity: 0.6;
+    .hero-glow,
+    .hero-glow-1,
+    .hero-glow-2,
+    .hero-glow-3 {
+        display: none !important;
     }
 
-    .orb-glow {
-        filter: blur(30px);
+    .hero-grid {
+        animation: none !important;
     }
 
-    .orb-ring {
-        animation-duration: 20s;
+    /* Disable backdrop-filter everywhere for performance */
+    .glass,
+    .glass-strong {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    /* Static title - no gradient animation */
+    .hero-title .word.highlight {
+        animation: none !important;
     }
 }
 
 @media (max-width: 480px) {
     .hero {
-        padding: 90px 0 40px;
+        padding: 80px 0 20px;
     }
 
     .hero-title {
-        font-size: clamp(1.8rem, 9vw, 2.5rem);
-        line-height: 1.2;
+        font-size: clamp(1.6rem, 7vw, 2rem);
+        line-height: 1.25;
     }
 
     .hero-subtitle {
-        font-size: 0.9rem;
-        line-height: 1.7;
+        font-size: 0.85rem;
+        line-height: 1.6;
     }
 
     .hero-buttons {
         flex-direction: column;
         width: 100%;
-        max-width: 280px;
-        gap: var(--spacing-md);
+        max-width: 260px;
+        gap: var(--spacing-sm);
     }
 
     .btn {
         width: 100%;
-        padding: 14px 24px;
-        font-size: 0.9rem;
+        padding: 12px 20px;
+        font-size: 0.85rem;
     }
 
     .hero-stats {
         flex-wrap: wrap;
         justify-content: center;
-        gap: var(--spacing-sm);
-        padding: var(--spacing-sm) var(--spacing-md);
-        background: rgba(15, 15, 40, 0.6);
+        gap: var(--spacing-xs);
+        padding: 8px 12px;
+        background: rgba(15, 15, 40, 0.7);
     }
 
     .stat-divider {
@@ -781,34 +835,52 @@
     }
 
     .stat {
-        min-width: 70px;
+        min-width: 60px;
         text-align: center;
     }
 
+    .stat-number {
+        font-size: 0.85rem;
+    }
+
+    .stat-label {
+        font-size: 9px;
+    }
+
+    /* Smaller planet for small screens */
     .hero-visual {
-        height: 280px;
-        transform: scale(0.7);
-        margin-top: 10px;
+        height: 220px;
+        margin-top: 15px;
     }
 
-    /* Performance optimizations for small mobile */
-    .hero-glow-1,
-    .hero-glow-2,
-    .hero-glow-3 {
-        display: none;
-    }
-
-    .orb-glow {
-        filter: blur(25px);
-        opacity: 0.7;
-    }
-
-    .orb-ring {
-        animation: none;
-        opacity: 0.5;
+    .hero-orb {
+        width: 200px;
+        height: 200px;
     }
 
     .orb-core {
-        animation: none;
+        width: 150px;
+        height: 150px;
+    }
+
+    .orb-ring-1 {
+        width: 170px;
+        height: 170px;
+    }
+
+    .orb-ring-2 {
+        width: 185px;
+        height: 185px;
+    }
+
+    .orb-ring-3 {
+        width: 200px;
+        height: 200px;
+    }
+
+    .orb-glow {
+        width: 220px;
+        height: 220px;
+        filter: blur(15px);
     }
 }
