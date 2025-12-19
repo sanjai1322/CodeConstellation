@@ -165,11 +165,23 @@
     }
 
     .logo-text {
-        font-size: var(--font-size-base);
+        font-size: clamp(var(--font-size-base), 4vw, var(--font-size-lg));
+        white-space: nowrap;
     }
 
     .logo-image {
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .navbar-container {
+        gap: var(--spacing-md);
+        padding: 0 var(--spacing-md);
+    }
+
+    .navbar-cta {
+        padding: 6px 12px;
+        font-size: 11px;
+        white-space: nowrap;
     }
 }
