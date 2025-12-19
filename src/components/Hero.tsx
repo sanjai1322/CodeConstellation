@@ -13,82 +13,112 @@ const Hero = () => {
     const orbRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // Check if mobile device
         const isMobile = window.innerWidth <= 768;
 
         const ctx = gsap.context(() => {
-            // === ENTRANCE ANIMATIONS (Fast & simple) ===
-            // Animate title words
-            gsap.fromTo('.hero-title .word',
-                { opacity: 0, y: 30 },
-                { opacity: 1, y: 0, duration: 0.5, stagger: 0.05, ease: 'power2.out', delay: 0.1 }
-            );
+            // === CINEMATIC ENTRANCE SEQUENCE ===
+            const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 1.2 } });
 
-            // Animate subtitle
-            gsap.fromTo(subtitleRef.current,
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', delay: 0.3 }
-            );
+            tl.fromTo('.hero-badge',
+                { opacity: 0, scale: 0.8, y: -20, filter: 'blur(10px)' },
+                { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)', duration: 1 }
+            )
+                .fromTo('.hero-title .word',
+                    { opacity: 0, y: 50, rotateX: -30, filter: 'blur(10px)' },
+                    { opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)', stagger: 0.04, duration: 1 },
+                    '-=0.7'
+                )
+                .fromTo(subtitleRef.current,
+                    { opacity: 0, y: 20, filter: 'blur(5px)' },
+                    { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.8 },
+                    '-=0.8'
+                )
+                .fromTo('.hero-buttons .btn',
+                    { opacity: 0, x: -20, scale: 0.95 },
+                    { opacity: 1, x: 0, scale: 1, stagger: 0.1, duration: 0.8 },
+                    '-=0.6'
+                )
+                .fromTo('.hero-stats',
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, duration: 0.8 },
+                    '-=0.8'
+                )
+                .fromTo('.hero-orb',
+                    { opacity: 0, scale: 0.5, filter: 'blur(20px)' },
+                    { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.5, ease: 'expo.out' },
+                    '-=1.2'
+                );
 
-            // Animate buttons
-            gsap.fromTo('.hero-buttons .btn',
-                { opacity: 0, y: 15 },
-                { opacity: 1, y: 0, duration: 0.3, stagger: 0.08, ease: 'power2.out', delay: 0.4 }
-            );
+            // === MAGNETIC BUTTON EFFECT ===
+            const magneticBtn = document.querySelector('.btn-magnetic');
+            if (magneticBtn && !isMobile) {
+                const onMouseMove = (e: MouseEvent) => {
+                    const rect = magneticBtn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    gsap.to(magneticBtn, {
+                        x: x * 0.35,
+                        y: y * 0.35,
+                        duration: 0.4,
+                        ease: 'power2.out'
+                    });
+                };
 
-            // Animate badge
-            gsap.fromTo('.hero-badge',
-                { opacity: 0, x: -20 },
-                { opacity: 1, x: 0, duration: 0.3, ease: 'power2.out', delay: 0.05 }
-            );
+                const onMouseLeave = () => {
+                    gsap.to(magneticBtn, {
+                        x: 0,
+                        y: 0,
+                        duration: 0.7,
+                        ease: 'elastic.out(1, 0.3)'
+                    });
+                };
+
+                magneticBtn.addEventListener('mousemove', onMouseMove as any);
+                magneticBtn.addEventListener('mouseleave', onMouseLeave as any);
+            }
 
             // Only run heavy animations on desktop
             if (!isMobile) {
-                // Animate floating cards (desktop only)
-                gsap.fromTo('.hero-card',
-                    { opacity: 0, scale: 0.8 },
-                    { opacity: 1, scale: 1, duration: 0.4, stagger: 0.08, ease: 'power2.out', delay: 0.5 }
-                );
-
-                // Orb continuous animation (desktop only)
+                // Fluid Breathing Effect
                 gsap.to(orbRef.current, {
-                    scale: 1.03,
-                    duration: 3,
+                    scale: 1.04,
+                    duration: 4,
                     repeat: -1,
                     yoyo: true,
                     ease: 'sine.inOut'
                 });
 
-                // === SCROLL ANIMATIONS (Desktop only) ===
+                // Animate floating cards
+                gsap.fromTo('.hero-card',
+                    { opacity: 0, scale: 0.8, y: 20 },
+                    { opacity: 1, scale: 1, y: 0, duration: 0.8, stagger: 0.1, delay: 0.8 }
+                );
+
+                // === PREMIUM SCROLL PARALLAX ===
                 gsap.to('.hero-content', {
-                    y: -80,
-                    opacity: 0,
-                    ease: 'none',
+                    y: -60,
+                    opacity: 0.8,
                     scrollTrigger: {
                         trigger: '.hero',
                         start: 'top top',
                         end: 'bottom top',
-                        scrub: 1.5,
+                        scrub: 1,
                     }
                 });
 
                 gsap.to('.hero-visual', {
-                    y: -100,
-                    scale: 0.9,
-                    opacity: 0.5,
-                    ease: 'none',
+                    y: 40,
                     scrollTrigger: {
                         trigger: '.hero',
                         start: 'top top',
                         end: 'bottom top',
-                        scrub: 2,
+                        scrub: 1,
                     }
                 });
 
                 gsap.to('.hero-stats', {
                     y: -30,
                     opacity: 0,
-                    ease: 'none',
                     scrollTrigger: {
                         trigger: '.hero',
                         start: '60% top',
@@ -143,7 +173,7 @@ const Hero = () => {
             <div className="hero-container">
                 <div className="hero-content">
                     <div className="hero-badge">
-                        <span className="badge-dot"></span>
+                        <img src="/logo.png" alt="Code Constellation" className="badge-logo" />
                         <span className="badge-text">Code Constellation • Developer-Led AI Tech Studio</span>
                     </div>
 
@@ -167,7 +197,7 @@ const Hero = () => {
                     </p>
 
                     <div className="hero-buttons" ref={buttonsRef}>
-                        <button className="btn btn-primary" onClick={() => scrollToSection('contact')}>
+                        <button className="btn btn-primary btn-magnetic" onClick={() => scrollToSection('contact')}>
                             <span className="btn-content">
                                 Work With Us
                                 <svg className="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

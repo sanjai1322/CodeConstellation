@@ -8,38 +8,39 @@ export const useScrollAnimations = () => {
     useEffect(() => {
         // === SECTION REVEAL ANIMATIONS ===
 
-        // All sections fade and slide up on scroll
+        // All sections fade and slide up with a subtle 3D rotate
         gsap.utils.toArray('.section').forEach((section: any) => {
             gsap.fromTo(section,
-                { opacity: 0.3, y: 60 },
+                { opacity: 0, y: 100, rotateX: 5 },
                 {
                     opacity: 1,
                     y: 0,
-                    duration: 1,
-                    ease: 'power3.out',
+                    rotateX: 0,
+                    duration: 1.2,
+                    ease: 'power4.out',
                     scrollTrigger: {
                         trigger: section,
                         start: 'top 85%',
-                        end: 'top 50%',
+                        end: 'top 30%',
                         toggleActions: 'play none none reverse',
                     }
                 }
             );
         });
 
-        // Section titles premium reveal
+        // Section titles premium split-reveal style
         gsap.utils.toArray('.section-title').forEach((title: any) => {
             gsap.fromTo(title,
-                { opacity: 0, y: 40, scale: 0.95 },
+                { opacity: 0, y: 60, rotateX: -15, transformOrigin: 'top' },
                 {
                     opacity: 1,
                     y: 0,
-                    scale: 1,
-                    duration: 0.8,
-                    ease: 'power3.out',
+                    rotateX: 0,
+                    duration: 1,
+                    ease: 'power4.out',
                     scrollTrigger: {
                         trigger: title,
-                        start: 'top 80%',
+                        start: 'top 85%',
                     }
                 }
             );
@@ -52,62 +53,64 @@ export const useScrollAnimations = () => {
                 {
                     opacity: 1,
                     y: 0,
-                    duration: 0.7,
-                    ease: 'power2.out',
-                    delay: 0.2,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    delay: 0.1,
                     scrollTrigger: {
                         trigger: subtitle,
-                        start: 'top 80%',
+                        start: 'top 85%',
                     }
                 }
             );
         });
 
-        // === CARD STAGGER ANIMATIONS ===
+        // === CARD STAGGER ANIMATIONS (More descriptive easing) ===
 
-        // Service cards
+        // Service cards with float-in
         gsap.fromTo('.service-card',
-            { opacity: 0, y: 60, scale: 0.9 },
+            { opacity: 0, y: 80, rotateX: 10 },
             {
                 opacity: 1,
                 y: 0,
-                scale: 1,
-                duration: 0.6,
-                stagger: 0.15,
-                ease: 'back.out(1.3)',
+                rotateX: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: 'power4.out',
                 scrollTrigger: {
                     trigger: '.services',
-                    start: 'top 70%',
+                    start: 'top 75%',
                 }
             }
         );
 
-        // Product cards
+        // Product cards with 3D tilt reveal
         gsap.fromTo('.product-card',
-            { opacity: 0, y: 50, rotateY: -15 },
+            { opacity: 0, y: 70, rotateY: -10, rotateX: 5 },
             {
                 opacity: 1,
                 y: 0,
                 rotateY: 0,
-                duration: 0.7,
-                stagger: 0.12,
+                rotateX: 0,
+                duration: 1,
+                stagger: 0.15,
                 ease: 'power3.out',
                 scrollTrigger: {
                     trigger: '.products',
-                    start: 'top 70%',
+                    start: 'top 75%',
                 }
             }
         );
 
-        // Approach steps
+        // Approach steps with cinematic glide
         gsap.fromTo('.approach-step',
-            { opacity: 0, x: -60 },
+            { opacity: 0, x: -40, filter: 'blur(10px)' },
             {
                 opacity: 1,
                 x: 0,
-                duration: 0.6,
-                stagger: 0.15,
-                ease: 'power2.out',
+                filter: 'blur(0px)',
+                duration: 0.8,
+                stagger: 0.2,
+                ease: 'power3.out',
                 scrollTrigger: {
                     trigger: '.approach',
                     start: 'top 70%',
@@ -115,32 +118,32 @@ export const useScrollAnimations = () => {
             }
         );
 
-        // Education cards
+        // Education cards with soft scale-up
         gsap.fromTo('.education-card',
-            { opacity: 0, y: 40, scale: 0.95 },
+            { opacity: 0, scale: 0.95, y: 30 },
             {
                 opacity: 1,
-                y: 0,
                 scale: 1,
-                duration: 0.5,
+                y: 0,
+                duration: 0.8,
                 stagger: 0.1,
-                ease: 'power2.out',
+                ease: 'back.out(1.4)',
                 scrollTrigger: {
                     trigger: '.education',
-                    start: 'top 70%',
+                    start: 'top 75%',
                 }
             }
         );
 
         // === PREMIUM PARALLAX FOR BACKGROUNDS ===
 
-        // Section background glows
+        // Section background glow parallax (more fluid)
         gsap.utils.toArray('.section').forEach((section: any) => {
             const glow = section.querySelector('[class*="glow"]');
             if (glow) {
                 gsap.to(glow, {
-                    y: -50,
-                    scale: 1.1,
+                    y: -100,
+                    scale: 1.25,
                     ease: 'none',
                     scrollTrigger: {
                         trigger: section,
@@ -154,30 +157,31 @@ export const useScrollAnimations = () => {
 
         // === CTA SECTION SPECIAL ANIMATION ===
         gsap.fromTo('.cta',
-            { opacity: 0.5, scale: 0.95 },
+            { opacity: 0, scale: 0.9, y: 50 },
             {
                 opacity: 1,
                 scale: 1,
-                duration: 1,
-                ease: 'power2.out',
+                y: 0,
+                duration: 1.2,
+                ease: 'power4.out',
                 scrollTrigger: {
                     trigger: '.cta',
-                    start: 'top 80%',
+                    start: 'top 85%',
                 }
             }
         );
 
         // === FOOTER REVEAL ===
         gsap.fromTo('footer',
-            { opacity: 0, y: 30 },
+            { opacity: 0, y: 50 },
             {
                 opacity: 1,
                 y: 0,
-                duration: 0.8,
-                ease: 'power2.out',
+                duration: 1,
+                ease: 'power3.out',
                 scrollTrigger: {
                     trigger: 'footer',
-                    start: 'top 90%',
+                    start: 'top 95%',
                 }
             }
         );

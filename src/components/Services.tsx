@@ -33,44 +33,8 @@ const services = [
 ];
 
 const Services = () => {
-    const sectionRef = useRef<HTMLElement>(null);
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            // Animate title
-            gsap.fromTo('.services .section-title',
-                { opacity: 0, y: 50 },
-                {
-                    opacity: 1, y: 0, duration: 0.8, scrollTrigger: {
-                        trigger: '.services',
-                        start: 'top 80%',
-                    }
-                }
-            );
-
-            // Animate cards with stagger
-            gsap.fromTo('.service-card',
-                { opacity: 0, y: 60, scale: 0.95 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 0.6,
-                    stagger: 0.15,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: '.services-grid',
-                        start: 'top 85%',
-                    }
-                }
-            );
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, []);
-
     return (
-        <section id="services" className="services section" ref={sectionRef}>
+        <section id="services" className="services section">
             <div className="services-bg">
                 <div className="services-glow"></div>
             </div>
@@ -87,7 +51,7 @@ const Services = () => {
                     {services.map((service, index) => (
                         <div
                             key={service.title}
-                            className="service-card"
+                            className="service-card spotlight-card card-premium"
                             style={{ '--index': index } as React.CSSProperties}
                         >
                             <div className="card-glow"></div>

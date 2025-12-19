@@ -37,48 +37,8 @@ const steps = [
 ];
 
 const Approach = () => {
-    const sectionRef = useRef<HTMLElement>(null);
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.fromTo('.approach-step',
-                { opacity: 0, y: 60, scale: 0.9 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 0.6,
-                    stagger: 0.2,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: '.approach-steps',
-                        start: 'top 85%',
-                    }
-                }
-            );
-
-            // Animate connecting lines
-            gsap.fromTo('.step-connector',
-                { scaleX: 0 },
-                {
-                    scaleX: 1,
-                    duration: 0.8,
-                    stagger: 0.2,
-                    delay: 0.3,
-                    ease: 'power2.inOut',
-                    scrollTrigger: {
-                        trigger: '.approach-steps',
-                        start: 'top 85%',
-                    }
-                }
-            );
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, []);
-
     return (
-        <section className="approach section" ref={sectionRef}>
+        <section className="approach section">
             <div className="approach-bg">
                 <div className="approach-glow"></div>
             </div>
@@ -95,7 +55,7 @@ const Approach = () => {
                     {steps.map((step, index) => (
                         <div key={step.number} className="approach-step-wrapper">
                             <div
-                                className="approach-step"
+                                className="approach-step spotlight-card card-premium"
                                 style={{ '--step-color': step.color } as React.CSSProperties}
                             >
                                 <div className="step-number-wrapper">

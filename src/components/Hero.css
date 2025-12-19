@@ -178,7 +178,7 @@
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-sm);
-    padding: var(--spacing-sm) var(--spacing-lg);
+    padding: 8px 16px;
     background: rgba(139, 92, 246, 0.12);
     border: 1px solid rgba(139, 92, 246, 0.35);
     border-radius: var(--radius-full);
@@ -191,13 +191,10 @@
     box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
 }
 
-.badge-dot {
-    width: 10px;
-    height: 10px;
-    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-    border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
-    box-shadow: 0 0 12px rgba(139, 92, 246, 0.8);
+.badge-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
 
 .badge-text {
@@ -700,11 +697,64 @@
         display: none;
     }
 
+    /* Show floating cards on mobile but position them around planet */
+    .hero-card {
+        display: flex;
+        padding: 8px 12px;
+        gap: 8px;
+        transform: scale(0.85);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        animation: none !important;
+        pointer-events: none;
+        z-index: 10;
+        min-width: 140px;
+    }
+
+    .card-icon {
+        font-size: 1.2rem;
+    }
+
+    .card-label {
+        font-size: 11px;
+    }
+
+    .card-status {
+        font-size: 9px;
+    }
+
+    .hero-card-1 {
+        top: 0;
+        left: -10px;
+        transform: scale(0.8) rotate(-5deg);
+    }
+
+    .hero-card-2 {
+        bottom: 20px;
+        left: -10px;
+        transform: scale(0.8) rotate(5deg);
+    }
+
+    .hero-card-3 {
+        top: 0;
+        right: -10px;
+        transform: scale(0.8) rotate(5deg);
+    }
+
+    .hero-card-4 {
+        bottom: 20px;
+        right: -10px;
+        transform: scale(0.8) rotate(-5deg);
+    }
+
     /* Planet visible and static on mobile */
     .hero-visual {
-        height: 260px;
+        height: 300px;
         transform: none;
         margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .hero-orb {
@@ -822,6 +872,33 @@
         font-size: 0.85rem;
     }
 
+    /* Cards on small mobile */
+    .hero-card {
+        transform: scale(0.65);
+        padding: 6px 10px;
+        min-width: 120px;
+    }
+
+    .hero-card-1 {
+        top: -10px;
+        left: -20px;
+    }
+
+    .hero-card-2 {
+        bottom: 10px;
+        left: -20px;
+    }
+
+    .hero-card-3 {
+        top: -10px;
+        right: -20px;
+    }
+
+    .hero-card-4 {
+        bottom: 10px;
+        right: -20px;
+    }
+
     .hero-stats {
         flex-wrap: wrap;
         justify-content: center;
@@ -849,7 +926,7 @@
 
     /* Smaller planet for small screens */
     .hero-visual {
-        height: 220px;
+        height: 240px;
         margin-top: 15px;
     }
 

@@ -39,49 +39,8 @@ const features = [
 ];
 
 const WhyUs = () => {
-    const sectionRef = useRef<HTMLElement>(null);
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            // Animate cards with fade + upward motion
-            gsap.fromTo('.why-card',
-                { opacity: 0, y: 60 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.7,
-                    stagger: 0.12,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: '.why-grid',
-                        start: 'top 80%',
-                    }
-                }
-            );
-
-            // Animate tags with subtle pulse
-            gsap.fromTo('.why-tag',
-                { opacity: 0, scale: 0.8 },
-                {
-                    opacity: 1,
-                    scale: 1,
-                    duration: 0.5,
-                    stagger: 0.08,
-                    ease: 'back.out(1.5)',
-                    scrollTrigger: {
-                        trigger: '.why-grid',
-                        start: 'top 75%',
-                    }
-                }
-            );
-
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, []);
-
     return (
-        <section className="why-us section" ref={sectionRef}>
+        <section className="why-us section">
             <div className="why-us-bg">
                 <div className="why-glow why-glow-1"></div>
                 <div className="why-glow why-glow-2"></div>
@@ -101,7 +60,7 @@ const WhyUs = () => {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="why-card"
+                            className="why-card spotlight-card card-premium"
                         >
                             <div className="card-header">
                                 <div className="card-icon-wrapper">

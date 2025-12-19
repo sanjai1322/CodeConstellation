@@ -506,14 +506,39 @@ ol {
   transition: opacity var(--transition-base);
 }
 
+/* Spotlight Hover Effect */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(139, 92, 246, 0.15),
+      transparent 40%);
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.spotlight-card:hover::after {
+  opacity: 1;
+}
+
 .card-premium:hover {
-  transform: translateY(-8px) scale(1.02);
-  border-color: var(--color-border-hover);
-  box-shadow: var(--shadow-glow);
+  transform: translateY(-10px) scale(1.02) rotateX(2deg);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 50px rgba(139, 92, 246, 0.3);
 }
 
 .card-premium:hover::before {
-  opacity: 0.1;
+  opacity: 0.2;
 }
 
 /* Gradient Border Effect */
@@ -530,8 +555,8 @@ ol {
   background: var(--gradient-border);
   border-radius: inherit;
   z-index: -1;
-  opacity: 0.5;
-  transition: opacity var(--transition-base);
+  opacity: 0.3;
+  transition: opacity var(--transition-slow);
 }
 
 .gradient-border:hover::before {

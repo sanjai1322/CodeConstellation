@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import { useGSAP } from '@gsap/react';
+import { gsap } from 'gsap';
 import './Navbar.css';
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const navRef = useRef<HTMLElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -13,6 +16,14 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useGSAP(() => {
+        // Staggered Navbar Reveal
+        const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 1 } });
+        tl.fromTo('.navbar-logo', { opacity: 0, x: -30 }, { opacity: 1, x: 0, delay: 0.2 })
+            .fromTo('.navbar-menu li', { opacity: 0, y: -20 }, { opacity: 1, y: 0, stagger: 0.1 }, '-=0.7')
+            .fromTo('.navbar-cta', { opacity: 0, x: 30 }, { opacity: 1, x: 0 }, '-=1');
+    }, { scope: containerRef });
+
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
         if (element) {
@@ -21,8 +32,8 @@ const Navbar = () => {
     };
 
     return (
-        <nav ref={navRef} className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-            <div className="navbar-container">
+        <nav ref={navRef} className={`navbar spotlight-card ${scrolled ? 'scrolled' : ''}`}>
+            <div className="navbar-container" ref={containerRef}>
                 <a href="#" className="navbar-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                     <img src="/logo.png" alt="Code Constellation" className="logo-image" />
                     <span className="logo-text">Code Constellation</span>

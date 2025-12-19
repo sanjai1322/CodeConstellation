@@ -25,32 +25,8 @@ const products = [
 ];
 
 const Products = () => {
-    const sectionRef = useRef<HTMLElement>(null);
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.fromTo('.product-card',
-                { opacity: 0, y: 60, scale: 0.95 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 0.7,
-                    stagger: 0.2,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: '.products-grid',
-                        start: 'top 85%',
-                    }
-                }
-            );
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, []);
-
     return (
-        <section id="products" className="products section" ref={sectionRef}>
+        <section id="products" className="products section">
             <div className="products-bg">
                 <div className="products-glow-1"></div>
                 <div className="products-glow-2"></div>
@@ -66,7 +42,7 @@ const Products = () => {
 
                 <div className="products-grid">
                     {products.map((product) => (
-                        <div key={product.name} className="product-card">
+                        <div key={product.name} className="product-card spotlight-card card-premium">
                             <div className="product-glow" style={{ background: product.gradient }}></div>
                             <div className="product-content">
                                 <div className="product-header">

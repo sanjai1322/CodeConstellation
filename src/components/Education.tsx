@@ -6,37 +6,14 @@ import './Education.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const Education = () => {
-    const sectionRef = useRef<HTMLElement>(null);
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.fromTo('.education-content',
-                { opacity: 0, y: 50, scale: 0.95 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: '.education',
-                        start: 'top 80%',
-                    }
-                }
-            );
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, []);
-
     return (
-        <section className="education section" ref={sectionRef}>
+        <section className="education section">
             <div className="education-bg">
                 <div className="education-line"></div>
             </div>
 
             <div className="container">
-                <div className="education-content">
+                <div className="education-content spotlight-card">
                     <div className="education-glow"></div>
                     <div className="education-inner">
                         <div className="education-icon-wrapper">

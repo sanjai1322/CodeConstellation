@@ -9,10 +9,13 @@ import Education from './components/Education';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import useScrollAnimations from './hooks/useScrollAnimations';
+import usePremiumEffects from './hooks/usePremiumEffects';
 
 function App() {
   // Enable premium scroll animations across all sections
   useScrollAnimations();
+  // Enable premium mouse and interaction effects
+  usePremiumEffects();
 
   return (
     <>
