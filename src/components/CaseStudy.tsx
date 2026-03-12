@@ -235,11 +235,11 @@ const CaseStudy = () => {
         setIsAnimating(true);
         setSwipeDirection(direction);
 
-        // Phase 1: slide current card OUT
+        // Phase 1: slide current card OUT softly
         if (cardRef.current) {
-            const exitX = direction === 'left' ? -120 : 120;
-            cardRef.current.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease';
-            cardRef.current.style.transform = `translateX(${exitX}%) scale(0.92)`;
+            const exitX = direction === 'left' ? -20 : 20; // Subtle shift, not 120%
+            cardRef.current.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease';
+            cardRef.current.style.transform = `translateX(${exitX}px) scale(0.98)`;
             cardRef.current.style.opacity = '0';
         }
 
@@ -250,7 +250,7 @@ const CaseStudy = () => {
             setTimeout(() => {
                 setIsAnimating(false);
                 setSwipeDirection(null);
-            }, 450);
+            }, 600); // Give ample time for the entrance transition to finish before unlocking
         }, 300);
     }, [isAnimating, activeIndex]);
 
@@ -284,19 +284,19 @@ const CaseStudy = () => {
         changeProject(newIndex, direction);
     }, [activeIndex, isAnimating, changeProject]);
 
-    // Animate new card IN when activeIndex changes
+    // Animate new card IN softly when activeIndex changes
     useEffect(() => {
         if (cardRef.current && swipeDirection) {
-            const enterFrom = swipeDirection === 'left' ? 80 : -80;
+            const enterFrom = swipeDirection === 'left' ? 20 : -20; // Subtle entrance shift
             cardRef.current.style.transition = 'none';
-            cardRef.current.style.transform = `translateX(${enterFrom}%) scale(0.95)`;
+            cardRef.current.style.transform = `translateX(${enterFrom}px) scale(0.98)`;
             cardRef.current.style.opacity = '0';
 
             // Force reflow, then animate to final position
             void cardRef.current.offsetHeight;
-            cardRef.current.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease';
-            cardRef.current.style.transform = '';
-            cardRef.current.style.opacity = '';
+            cardRef.current.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease';
+            cardRef.current.style.transform = 'translateX(0) scale(1)';
+            cardRef.current.style.opacity = '1';
         }
     }, [activeIndex, swipeDirection]);
 
