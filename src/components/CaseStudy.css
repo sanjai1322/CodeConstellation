@@ -1,6 +1,10 @@
 /* ============================================================
    CASE STUDY — Tabbed Multi-Project Showcase
    ============================================================ */
+.case-study {
+    overflow-x: hidden;
+}
+
 .case-header {
     margin-bottom: 40px;
 }

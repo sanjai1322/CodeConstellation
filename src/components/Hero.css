@@ -303,7 +303,7 @@
     .hero {
         padding-top: 100px;
         min-height: auto;
-        padding-bottom: 60px;
+        padding-bottom: 120px;
     }
 
     .hero-title {
@@ -328,22 +328,19 @@
     .hero-stats {
         gap: 16px;
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     .hero-orb {
         width: 300px;
         height: 300px;
     }
-
-    .hero-scroll-hint {
-        display: none;
-    }
 }
 
 @media (max-width: 480px) {
     .hero {
         padding-top: 88px;
-        padding-bottom: 48px;
+        padding-bottom: 110px;
     }
 
     .hero-title {
@@ -356,6 +353,7 @@
 
     .hero-stats {
         gap: 12px;
+        justify-content: center;
     }
 
     .stat-number {
