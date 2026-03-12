@@ -68,3 +68,27 @@
         transform: translateX(-50%);
     }
 }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+    .ticker {
+        padding: 14px 0;
+    }
+
+    .ticker::before,
+    .ticker::after {
+        width: 40px;
+    }
+
+    .ticker-item {
+        font-size: 12px;
+        padding: 0 16px;
+        gap: 16px;
+    }
+
+    .ticker-track {
+        animation-duration: 25s;
+    }
+}

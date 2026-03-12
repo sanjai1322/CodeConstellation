@@ -558,16 +558,68 @@ ul {
   border-color: rgba(96, 165, 250, 0.2);
 }
 
+/* ═══════════════════════════════════════════
+   TOUCH-DEVICE AUTO-ANIMATIONS
+   Cards get spotlight + glow when scrolled into view on mobile
+   ═══════════════════════════════════════════ */
+.touch-active {
+  border-color: var(--border-strong) !important;
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.1) !important;
+}
+
+.touch-active::after {
+  opacity: 1 !important;
+}
+
+.touch-active::before {
+  opacity: 1 !important;
+  transform: scaleX(1) !important;
+}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+
+/* ── Tablet ── */
+@media (max-width: 1024px) {
+  :root {
+    --section-py: 96px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 5vw, 48px);
+  }
+}
+
+/* ── Mobile ── */
 @media (max-width: 768px) {
   :root {
-    --section-py: 72px;
-    --container-px: 20px;
+    --section-py: 64px;
+    --container-px: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(24px, 7vw, 36px);
   }
 
   .section-subtitle {
-    font-size: 15px;
+    font-size: 14px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    padding: 5px 14px;
+  }
+}
+
+/* ── Small phones ── */
+@media (max-width: 480px) {
+  :root {
+    --section-py: 48px;
+    --container-px: 14px;
+  }
+
+  .section-title {
+    font-size: clamp(22px, 6.5vw, 32px);
   }
 }

@@ -66,9 +66,23 @@
 /* ============================================================
    RESPONSIVE
    ============================================================ */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .pillars-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
     .pillars-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 12px;
+    }
+
+    .pillar-card {
+        padding: 28px 22px;
+    }
+
+    .pillars-header {
+        margin-bottom: 36px;
     }
 }

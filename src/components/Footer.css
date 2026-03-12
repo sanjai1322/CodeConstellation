@@ -103,10 +103,20 @@
 /* ============================================================
    RESPONSIVE
    ============================================================ */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer {
+        padding: 48px 0 0;
+    }
+
     .footer-content {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 28px;
     }
 
     .footer-bottom {

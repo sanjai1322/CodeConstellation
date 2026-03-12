@@ -82,10 +82,34 @@
 @media (max-width: 768px) {
     .cta-layout {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 32px;
     }
 
     .cta-form-wrapper {
         padding: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-form-wrapper {
+        padding: 20px 16px;
+    }
+
+    .cta-form {
+        gap: 16px;
+    }
+
+    .form-input {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    .cta-submit {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .cta-description {
+        font-size: 14px;
     }
 }

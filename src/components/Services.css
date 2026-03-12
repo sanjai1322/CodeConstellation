@@ -100,4 +100,22 @@
     .services-grid {
         grid-template-columns: 1fr;
     }
+
+    .services-header {
+        margin-bottom: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-card {
+        padding: 24px 20px;
+    }
+
+    .service-title {
+        font-size: 18px;
+    }
+
+    .service-description {
+        font-size: 13px;
+    }
 }

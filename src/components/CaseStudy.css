@@ -434,7 +434,12 @@
     }
 
     .case-visual {
-        min-height: 180px;
+        min-height: 160px;
+    }
+
+    .case-viz {
+        width: 180px;
+        height: 180px;
     }
 }
 
@@ -447,7 +452,28 @@
         padding: 10px 14px;
     }
 
+    .tab-label {
+        font-size: 9px;
+    }
+
     .tab-title {
         font-size: 12px;
+    }
+
+    .case-body {
+        padding: 20px;
+        gap: 24px;
+    }
+
+    .case-title {
+        font-size: clamp(22px, 6vw, 32px);
+    }
+
+    .case-desc {
+        font-size: 14px;
+    }
+
+    .case-header {
+        margin-bottom: 28px;
     }
 }
