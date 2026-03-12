@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import './CaseStudy.css';
 
 interface Project {
@@ -184,34 +184,121 @@ const vizMap: Record<string, () => React.JSX.Element> = {
 
 const CaseStudy = () => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null);
+    const [isAnimating, setIsAnimating] = useState(false);
     const project = projects[activeIndex];
     const Viz = vizMap[project.vizType];
 
-    // ── Swipe handling ──
+    // ── Swipe handling with real-time tracking ──
     const touchStartX = useRef(0);
     const touchStartY = useRef(0);
+    const touchCurrentX = useRef(0);
+    const isSwiping = useRef(false);
     const cardRef = useRef<HTMLDivElement>(null);
 
     const handleTouchStart = useCallback((e: React.TouchEvent) => {
+        if (isAnimating) return;
         touchStartX.current = e.touches[0].clientX;
         touchStartY.current = e.touches[0].clientY;
-    }, []);
+        touchCurrentX.current = e.touches[0].clientX;
+        isSwiping.current = false;
+    }, [isAnimating]);
+
+    const handleTouchMove = useCallback((e: React.TouchEvent) => {
+        if (isAnimating) return;
+        const deltaX = e.touches[0].clientX - touchStartX.current;
+        const deltaY = e.touches[0].clientY - touchStartY.current;
+        touchCurrentX.current = e.touches[0].clientX;
+
+        // Lock into horizontal swipe once threshold met
+        if (!isSwiping.current && Math.abs(deltaX) > 10 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+            isSwiping.current = true;
+        }
+
+        if (isSwiping.current && cardRef.current) {
+            // Elastic resistance: card follows finger at 60% speed, with friction at edges
+            const isAtEdge = (deltaX > 0 && activeIndex === 0) || (deltaX < 0 && activeIndex === projects.length - 1);
+            const resistance = isAtEdge ? 0.15 : 0.6;
+            const translateX = deltaX * resistance;
+            const rotate = (deltaX * resistance) / 40; // subtle tilt
+            const opacity = 1 - Math.min(Math.abs(deltaX) / 600, 0.3);
+            const scale = 1 - Math.min(Math.abs(deltaX) / 2000, 0.03);
+
+            cardRef.current.style.transition = 'none';
+            cardRef.current.style.transform = `translateX(${translateX}px) rotate(${rotate}deg) scale(${scale})`;
+            cardRef.current.style.opacity = `${opacity}`;
+        }
+    }, [isAnimating, activeIndex]);
+
+    const changeProject = useCallback((newIndex: number, direction: 'left' | 'right') => {
+        if (isAnimating || newIndex === activeIndex) return;
+        setIsAnimating(true);
+        setSwipeDirection(direction);
+
+        // Phase 1: slide current card OUT
+        if (cardRef.current) {
+            const exitX = direction === 'left' ? -120 : 120;
+            cardRef.current.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease';
+            cardRef.current.style.transform = `translateX(${exitX}%) scale(0.92)`;
+            cardRef.current.style.opacity = '0';
+        }
+
+        // Phase 2: switch content and animate IN from opposite side
+        setTimeout(() => {
+            setActiveIndex(newIndex);
+            // Reset will happen via the useEffect below
+            setTimeout(() => {
+                setIsAnimating(false);
+                setSwipeDirection(null);
+            }, 450);
+        }, 300);
+    }, [isAnimating, activeIndex]);
 
     const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+        if (isAnimating) return;
         const deltaX = e.changedTouches[0].clientX - touchStartX.current;
-        const deltaY = e.changedTouches[0].clientY - touchStartY.current;
 
-        // Only trigger if horizontal swipe is dominant and exceeds threshold
-        if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+        if (isSwiping.current && Math.abs(deltaX) > 50) {
             if (deltaX < 0 && activeIndex < projects.length - 1) {
-                // Swipe left → next
-                setActiveIndex(prev => prev + 1);
+                changeProject(activeIndex + 1, 'left');
+                return;
             } else if (deltaX > 0 && activeIndex > 0) {
-                // Swipe right → previous
-                setActiveIndex(prev => prev - 1);
+                changeProject(activeIndex - 1, 'right');
+                return;
             }
         }
-    }, [activeIndex]);
+
+        // Snap-back with spring physics
+        if (cardRef.current) {
+            cardRef.current.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease';
+            cardRef.current.style.transform = '';
+            cardRef.current.style.opacity = '';
+        }
+        isSwiping.current = false;
+    }, [isAnimating, activeIndex, changeProject]);
+
+    // Handle tab clicks with direction awareness
+    const handleTabClick = useCallback((newIndex: number) => {
+        if (newIndex === activeIndex || isAnimating) return;
+        const direction = newIndex > activeIndex ? 'left' : 'right';
+        changeProject(newIndex, direction);
+    }, [activeIndex, isAnimating, changeProject]);
+
+    // Animate new card IN when activeIndex changes
+    useEffect(() => {
+        if (cardRef.current && swipeDirection) {
+            const enterFrom = swipeDirection === 'left' ? 80 : -80;
+            cardRef.current.style.transition = 'none';
+            cardRef.current.style.transform = `translateX(${enterFrom}%) scale(0.95)`;
+            cardRef.current.style.opacity = '0';
+
+            // Force reflow, then animate to final position
+            void cardRef.current.offsetHeight;
+            cardRef.current.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease';
+            cardRef.current.style.transform = '';
+            cardRef.current.style.opacity = '';
+        }
+    }, [activeIndex, swipeDirection]);
 
     return (
         <section id="work" className="case-study section">
@@ -232,7 +319,7 @@ const CaseStudy = () => {
                         <button
                             key={p.id}
                             className={`case-tab ${i === activeIndex ? 'case-tab-active' : ''}`}
-                            onClick={() => setActiveIndex(i)}
+                            onClick={() => handleTabClick(i)}
                         >
                             <span className="tab-label">{p.label}</span>
                             <span className="tab-title">{p.title}</span>
@@ -246,6 +333,7 @@ const CaseStudy = () => {
                     className="case-card"
                     key={project.id}
                     onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
                 >
                     <div className="case-body">
