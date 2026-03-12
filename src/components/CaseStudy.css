@@ -477,3 +477,70 @@
         margin-bottom: 28px;
     }
 }
+
+/* ═══════════════════════════════════════════
+   SWIPE INDICATOR — mobile dots + hint
+   ═══════════════════════════════════════════ */
+.swipe-indicator {
+    display: none;
+    /* hidden on desktop */
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.swipe-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.swipe-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(96, 165, 250, 0.2);
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.swipe-dot-active {
+    width: 24px;
+    border-radius: 100px;
+    background: var(--accent-primary);
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
+}
+
+.swipe-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    animation: swipe-fade 3s ease-in-out infinite;
+}
+
+@keyframes swipe-fade {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Show on mobile */
+@media (max-width: 768px) {
+    .swipe-indicator {
+        display: flex;
+    }
+
+    /* Better touch handling on the card */
+    .case-card {
+        touch-action: pan-y;
+        user-select: none;
+    }
+}

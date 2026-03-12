@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import './CaseStudy.css';
 
 interface Project {
@@ -174,7 +174,7 @@ const LeafViz = () => (
     </div>
 );
 
-const vizMap: Record<string, () => JSX.Element> = {
+const vizMap: Record<string, () => React.JSX.Element> = {
     orbits: OrbitsViz,
     waveform: WaveformViz,
     solar: SolarViz,
@@ -186,6 +186,32 @@ const CaseStudy = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const project = projects[activeIndex];
     const Viz = vizMap[project.vizType];
+
+    // ── Swipe handling ──
+    const touchStartX = useRef(0);
+    const touchStartY = useRef(0);
+    const cardRef = useRef<HTMLDivElement>(null);
+
+    const handleTouchStart = useCallback((e: React.TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX;
+        touchStartY.current = e.touches[0].clientY;
+    }, []);
+
+    const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+        const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+        const deltaY = e.changedTouches[0].clientY - touchStartY.current;
+
+        // Only trigger if horizontal swipe is dominant and exceeds threshold
+        if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+            if (deltaX < 0 && activeIndex < projects.length - 1) {
+                // Swipe left → next
+                setActiveIndex(prev => prev + 1);
+            } else if (deltaX > 0 && activeIndex > 0) {
+                // Swipe right → previous
+                setActiveIndex(prev => prev - 1);
+            }
+        }
+    }, [activeIndex]);
 
     return (
         <section id="work" className="case-study section">
@@ -214,8 +240,14 @@ const CaseStudy = () => {
                     ))}
                 </div>
 
-                {/* ── Active Case Card ── */}
-                <div className="case-card" key={project.id}>
+                {/* ── Active Case Card (swipeable) ── */}
+                <div
+                    ref={cardRef}
+                    className="case-card"
+                    key={project.id}
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
+                >
                     <div className="case-body">
                         <div className="case-info">
                             <h3 className="case-title">
@@ -254,9 +286,25 @@ const CaseStudy = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* ── Swipe Indicator (mobile) ── */}
+                <div className="swipe-indicator">
+                    <div className="swipe-dots">
+                        {projects.map((_, i) => (
+                            <button
+                                key={i}
+                                className={`swipe-dot ${i === activeIndex ? 'swipe-dot-active' : ''}`}
+                                onClick={() => setActiveIndex(i)}
+                                aria-label={`Go to project ${i + 1}`}
+                            />
+                        ))}
+                    </div>
+                    <span className="swipe-hint">Swipe to explore</span>
+                </div>
             </div>
         </section>
     );
 };
 
 export default CaseStudy;
+
