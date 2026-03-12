@@ -1,184 +1,103 @@
-.services {
-    position: relative;
-    background: var(--color-bg-secondary);
-    overflow: hidden;
-}
-
-.services-bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-}
-
-.services-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
-    animation: pulse 10s ease-in-out infinite;
+/* ============================================================
+   SERVICES — 2x2 Grid, Cosmic
+   ============================================================ */
+.services-header {
+    margin-bottom: 56px;
 }
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-xl);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
 .service-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
     position: relative;
-    padding: var(--spacing-2xl);
-    background: var(--color-bg-card);
-    border-radius: var(--radius-xl);
     overflow: hidden;
-    transition: all var(--transition-slow);
 }
 
 .service-card::before {
     content: '';
     position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(59, 130, 246, 0.1) 50%, rgba(139, 92, 246, 0.3) 100%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0.5;
-    transition: opacity var(--transition-base);
-}
-
-.card-glow {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity var(--transition-slow);
-    pointer-events: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-light));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
 }
 
 .service-card:hover {
-    transform: translateY(-12px);
-    box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.4),
-        0 0 60px rgba(139, 92, 246, 0.2);
+    transform: translateY(-3px);
+    border-color: var(--border-strong);
+    box-shadow: 0 8px 32px rgba(37, 99, 235, 0.1);
 }
 
 .service-card:hover::before {
-    opacity: 1;
+    transform: scaleX(1);
 }
 
-.service-card:hover .card-glow {
-    opacity: 1;
+.service-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-.service-card:hover .icon-ring {
-    transform: scale(1.2);
-    opacity: 1;
-}
-
-.card-content {
-    position: relative;
-    z-index: 1;
-}
-
-.service-icon-wrapper {
-    position: relative;
-    width: 70px;
-    height: 70px;
+.service-icon-box {
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    font-size: 22px;
 }
 
-.service-icon {
-    font-size: 2.5rem;
-    position: relative;
-    z-index: 1;
-    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.5));
-    animation: float 4s ease-in-out infinite;
-    animation-delay: calc(var(--index) * 0.5s);
-}
-
-.icon-ring {
-    position: absolute;
-    inset: 0;
-    border: 2px solid rgba(139, 92, 246, 0.3);
-    border-radius: 50%;
-    opacity: 0.5;
-    transition: all var(--transition-slow);
-    animation: rotate 8s linear infinite;
-}
-
-.icon-ring::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background: var(--color-accent-purple);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--color-accent-purple);
+.service-num {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
 }
 
 .service-title {
-    font-size: var(--font-size-xl);
+    font-family: var(--font-heading);
+    font-size: 20px;
     font-weight: 700;
-    margin-bottom: var(--spacing-sm);
-    color: var(--color-text-primary);
+    color: var(--text-primary);
+    margin-bottom: 10px;
     letter-spacing: -0.01em;
 }
 
 .service-description {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-secondary);
+    font-size: 14px;
+    color: var(--text-secondary);
     line-height: 1.7;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: 20px;
 }
 
-.service-features {
+.service-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-sm);
+    gap: 6px;
 }
 
-.feature-tag {
-    padding: var(--spacing-xs) var(--spacing-sm);
-    font-size: var(--font-size-xs);
-    color: var(--color-text-accent);
-    background: rgba(139, 92, 246, 0.1);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    border-radius: var(--radius-full);
-    transition: all var(--transition-base);
-}
-
-.service-card:hover .feature-tag {
-    background: rgba(139, 92, 246, 0.2);
-    border-color: rgba(139, 92, 246, 0.4);
-}
-
-/* Responsive */
-@media (max-width: 1200px) {
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 640px) {
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
     .services-grid {
         grid-template-columns: 1fr;
-    }
-
-    .service-card {
-        padding: var(--spacing-xl);
     }
 }

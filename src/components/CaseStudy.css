@@ -1,0 +1,453 @@
+/* ============================================================
+   CASE STUDY — Tabbed Multi-Project Showcase
+   ============================================================ */
+.case-header {
+    margin-bottom: 40px;
+}
+
+/* ── Tab Selectors ── */
+.case-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 4px;
+}
+
+.case-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.case-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    padding: 12px 20px;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    flex-shrink: 0;
+}
+
+.case-tab:hover {
+    border-color: var(--border-default);
+    background: var(--bg-surface);
+}
+
+.case-tab-active {
+    border-color: var(--accent-primary);
+    background: rgba(37, 99, 235, 0.06);
+    box-shadow: 0 0 16px rgba(37, 99, 235, 0.1);
+}
+
+.tab-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+.case-tab-active .tab-label {
+    color: var(--accent-light);
+}
+
+.tab-title {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.case-tab-active .tab-title {
+    color: var(--text-primary);
+}
+
+/* ── Case Card ── */
+.case-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    position: relative;
+    animation: card-enter 0.4s ease-out;
+}
+
+@keyframes card-enter {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+        filter: blur(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0px);
+    }
+}
+
+.case-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-light), transparent);
+}
+
+.case-body {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 40px;
+    padding: 40px;
+    align-items: start;
+}
+
+.case-title {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+}
+
+.case-accent {
+    font-size: 14px;
+    color: var(--accent-light);
+    font-weight: 500;
+    margin-top: 4px;
+    margin-bottom: 16px;
+}
+
+.case-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.case-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 28px;
+}
+
+/* ── Stats ── */
+.case-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.case-stat-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.case-stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.case-stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+}
+
+.case-stat-value {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.case-bar {
+    width: 100%;
+    height: 3px;
+    background: var(--bg-elevated);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.case-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-light));
+    transition: width 1s ease-out;
+}
+
+/* ═══════════════════════════════════════════
+   VISUALIZATIONS — Shared Base
+   ═══════════════════════════════════════════ */
+.case-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 240px;
+}
+
+.case-viz {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Orbits (AgriSense) ── */
+.orbits-viz .viz-center-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.6);
+    z-index: 2;
+}
+
+.orbits-viz .viz-ring {
+    position: absolute;
+    border: 1px solid rgba(96, 165, 250, 0.15);
+    border-radius: 50%;
+    animation: orbit-spin 20s linear infinite;
+}
+
+.orbits-viz .viz-ring::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+}
+
+.orbits-viz .viz-ring:nth-child(3) {
+    animation-duration: 15s;
+    animation-direction: reverse;
+}
+
+.orbits-viz .viz-ring:nth-child(4) {
+    animation-duration: 25s;
+}
+
+@keyframes orbit-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Waveform (Exoplanet) ── */
+.waveform-viz {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+}
+
+.waveform-svg {
+    width: 100%;
+    height: 100%;
+    animation: waveform-drift 6s ease-in-out infinite alternate;
+}
+
+@keyframes waveform-drift {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-10px);
+    }
+}
+
+/* ── Solar (Space Weather) ── */
+.solar-viz .solar-core {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.6), rgba(37, 99, 235, 0.3));
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4), 0 0 60px rgba(59, 130, 246, 0.15);
+    z-index: 2;
+    animation: solar-pulse 3s ease-in-out infinite;
+}
+
+@keyframes solar-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+    }
+
+    50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 50px rgba(59, 130, 246, 0.6);
+    }
+}
+
+.solar-flare {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(96, 165, 250, 0.12);
+    animation: flare-expand 4s ease-out infinite;
+}
+
+.solar-flare-1 {
+    width: 90px;
+    height: 90px;
+    animation-delay: 0s;
+}
+
+.solar-flare-2 {
+    width: 130px;
+    height: 130px;
+    animation-delay: 1.3s;
+}
+
+.solar-flare-3 {
+    width: 170px;
+    height: 170px;
+    animation-delay: 2.6s;
+}
+
+@keyframes flare-expand {
+    0% {
+        opacity: 0.6;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.4);
+    }
+}
+
+/* ── Grid (Lunar Enhancement) ── */
+.grid-viz {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    width: 160px;
+    height: 160px;
+}
+
+.grid-cell {
+    border: 1px solid rgba(96, 165, 250, 0.1);
+    border-radius: 4px;
+    background: rgba(37, 99, 235, 0.04);
+    transition: background 0.4s ease, border-color 0.4s ease;
+    animation: grid-flicker 5s ease-in-out infinite;
+}
+
+.grid-cell-lit {
+    background: rgba(59, 130, 246, 0.12);
+    border-color: rgba(96, 165, 250, 0.25);
+}
+
+.grid-cell:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.grid-cell:nth-child(5) {
+    animation-delay: 0.6s;
+}
+
+.grid-cell:nth-child(8) {
+    animation-delay: 0.9s;
+}
+
+.grid-cell:nth-child(11) {
+    animation-delay: 1.2s;
+}
+
+.grid-cell:nth-child(14) {
+    animation-delay: 1.5s;
+}
+
+@keyframes grid-flicker {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ── Leaf (Disease Detection) ── */
+.leaf-viz {
+    overflow: visible;
+}
+
+.leaf-svg {
+    width: 140px;
+    height: 170px;
+    animation: leaf-sway 6s ease-in-out infinite;
+}
+
+@keyframes leaf-sway {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(2deg);
+    }
+
+    75% {
+        transform: rotate(-2deg);
+    }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+    .case-body {
+        grid-template-columns: 1fr;
+        padding: 28px;
+    }
+
+    .case-visual {
+        min-height: 180px;
+    }
+}
+
+@media (max-width: 600px) {
+    .case-tabs {
+        gap: 6px;
+    }
+
+    .case-tab {
+        padding: 10px 14px;
+    }
+
+    .tab-title {
+        font-size: 12px;
+    }
+}

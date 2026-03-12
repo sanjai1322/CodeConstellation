@@ -1,51 +1,49 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Education.css';
 
-gsap.registerPlugin(ScrollTrigger);
+const courses = [
+    {
+        icon: '📱',
+        title: 'App Development',
+        description: 'Build production-ready mobile apps with Flutter and React Native.',
+    },
+    {
+        icon: '🤖',
+        title: 'AI Systems',
+        description: 'Learn to build intelligent agents, LLM integrations, and ML pipelines.',
+    },
+    {
+        icon: '⚡',
+        title: 'Automation',
+        description: 'Master automated workflows, API integrations, and data pipelines.',
+    },
+];
 
 const Education = () => {
     return (
         <section className="education section">
-            <div className="education-bg">
-                <div className="education-line"></div>
-            </div>
-
             <div className="container">
-                <div className="education-content spotlight-card">
-                    <div className="education-glow"></div>
-                    <div className="education-inner">
-                        <div className="education-icon-wrapper">
-                            <span className="education-icon">📚</span>
-                            <div className="icon-ring icon-ring-1"></div>
-                            <div className="icon-ring icon-ring-2"></div>
-                        </div>
-                        <h2 className="education-title">
+                <div className="education-layout">
+                    <div className="education-text">
+                        <div className="section-label">Education</div>
+                        <h2 className="section-title">
                             We Also <span className="gradient-text">Teach</span> What We Build
                         </h2>
                         <p className="education-description">
                             Learn app development, AI systems, and automation from builders who ship real products.
-                            We share our knowledge through courses, tutorials, and content.
+                            We share our knowledge through courses, tutorials, and hands-on mentorship.
                         </p>
-                        <div className="education-tags">
-                            <span className="education-tag">
-                                <span className="tag-icon">📱</span>
-                                App Development
-                            </span>
-                            <span className="education-tag">
-                                <span className="tag-icon">🤖</span>
-                                AI Systems
-                            </span>
-                            <span className="education-tag">
-                                <span className="tag-icon">⚡</span>
-                                Automation
-                            </span>
-                            <span className="education-tag">
-                                <span className="tag-icon">🚀</span>
-                                Real Projects
-                            </span>
-                        </div>
+                    </div>
+
+                    <div className="education-courses">
+                        {courses.map((c, i) => (
+                            <div key={i} className="course-card">
+                                <div className="course-icon">{c.icon}</div>
+                                <div className="course-body">
+                                    <h3 className="course-title">{c.title}</h3>
+                                    <p className="course-desc">{c.description}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

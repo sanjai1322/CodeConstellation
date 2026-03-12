@@ -1,67 +1,117 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useState, useRef } from 'react';
 import './CTA.css';
 
-gsap.registerPlugin(ScrollTrigger);
-
 const CTA = () => {
-    const sectionRef = useRef<HTMLElement>(null);
+    const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+    const formRef = useRef<HTMLFormElement>(null);
 
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.fromTo('.cta-content',
-                { opacity: 0, y: 50, scale: 0.95 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: '.cta',
-                        start: 'top 80%',
-                    }
-                }
-            );
-        }, sectionRef);
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-        return () => ctx.revert();
-    }, []);
+        if (!formRef.current) return;
 
-    const scrollToContact = () => {
-        const element = document.getElementById('contact');
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+        setStatus('submitting');
+        const form = formRef.current;
+        const data = new FormData(form);
+
+        try {
+            const res = await fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (res.ok) {
+                setStatus('success');
+                form.reset();
+                setTimeout(() => setStatus('idle'), 5000);
+            } else {
+                setStatus('error');
+                setTimeout(() => setStatus('idle'), 3000);
+            }
+        } catch (error) {
+            setStatus('error');
+            setTimeout(() => setStatus('idle'), 3000);
         }
     };
 
     return (
-        <section className="cta section" ref={sectionRef}>
-            <div className="cta-bg">
-                <div className="cta-orb cta-orb-1"></div>
-                <div className="cta-orb cta-orb-2"></div>
-                <div className="cta-grid"></div>
-            </div>
-
+        <section id="contact" className="cta section">
             <div className="container">
-                <div className="cta-content">
-                    <div className="cta-glow"></div>
-                    <h2 className="cta-title">
-                        Let's Build Something <span className="gradient-text">Great</span>
-                    </h2>
-                    <p className="cta-description">
-                        Need an app, website, or AI system? Let's talk about your project and make it real.
-                    </p>
-                    <button className="cta-button" onClick={scrollToContact}>
-                        <span className="btn-bg"></span>
-                        <span className="btn-text">
-                            Get In Touch
-                            <svg className="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
-                        </span>
-                    </button>
+                <div className="cta-layout">
+                    <div className="cta-text">
+                        <div className="section-label">Get Started</div>
+                        <h2 className="section-title">
+                            Let's Build Your{' '}
+                            <span className="gradient-text">Digital Empire</span>
+                        </h2>
+                        <p className="cta-description">
+                            From prototype to high-performance production systems.
+                            Tell us about your project and we'll get back within 24 hours.
+                        </p>
+                    </div>
+
+                    <div className="cta-form-wrapper">
+                        <form
+                            ref={formRef}
+                            className="cta-form"
+                            action="https://formspree.io/f/xjkdbnbo"
+                            method="POST"
+                            onSubmit={handleSubmit}
+                        >
+
+                            <div className="form-group">
+                                <label htmlFor="name" className="form-label">Name</label>
+                                <input
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    className="form-input"
+                                    placeholder="Your name"
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="email" className="form-label">Email</label>
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    className="form-input"
+                                    placeholder="you@company.com"
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="message" className="form-label">Message</label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    className="form-input form-textarea"
+                                    placeholder="Tell us about your project..."
+                                    rows={4}
+                                    required
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="btn-primary cta-submit"
+                                disabled={status === 'submitting'}
+                                style={status === 'success' ? { background: 'linear-gradient(135deg, #059669, #10b981)' } : undefined}
+                            >
+                                {status === 'idle' && 'Send Message'}
+                                {status === 'submitting' && 'Sending...'}
+                                {status === 'success' && "✓ Sent! We'll respond within 48 hours."}
+                                {status === 'error' && 'Something went wrong. Try again.'}
+
+                                {status === 'idle' && (
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
+                                    </svg>
+                                )}
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>

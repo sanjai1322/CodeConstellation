@@ -1,9 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Products.css';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const products = [
     {
@@ -27,41 +22,45 @@ const products = [
 const Products = () => {
     return (
         <section id="products" className="products section">
-            <div className="products-bg">
-                <div className="products-glow-1"></div>
-                <div className="products-glow-2"></div>
-            </div>
-
             <div className="container">
-                <h2 className="section-title">
-                    Our <span className="gradient-text">Products</span>
-                </h2>
-                <p className="section-subtitle">
-                    We don't just build for clients — we build and ship our own products too.
-                </p>
+                <div className="products-header">
+                    <div className="section-label">Our Work</div>
+                    <h2 className="section-title">
+                        Digital <span className="gradient-text-primary">Showcase</span>
+                    </h2>
+                    <p className="section-subtitle">
+                        Elite systems engineered and deployed by our studio.
+                    </p>
+                </div>
 
                 <div className="products-grid">
-                    {products.map((product) => (
-                        <div key={product.name} className="product-card spotlight-card card-premium">
-                            <div className="product-glow" style={{ background: product.gradient }}></div>
-                            <div className="product-content">
-                                <div className="product-header">
-                                    <div className="product-icon-wrapper">
-                                        <span className="product-icon">{product.icon}</span>
-                                        <div className="icon-glow" style={{ background: product.gradient }}></div>
-                                    </div>
-                                    <span className={`product-status ${product.status.toLowerCase()}`}>
-                                        <span className="status-dot"></span>
-                                        {product.status}
-                                    </span>
+                    {products.map((p) => (
+                        <div key={p.name} className="product-card">
+                            <div className="product-banner" style={{ background: p.gradient }}>
+                                <span className="product-banner-icon">{p.icon}</span>
+                                <div className="product-banner-shimmer" />
+                            </div>
+
+                            <div className="product-body">
+                                <div className="product-header-row">
+                                    <h3 className="product-name">{p.name}</h3>
+                                    {p.status === 'Live'
+                                        ? <span className="status-live">Live</span>
+                                        : <span className="status-soon">Soon</span>
+                                    }
                                 </div>
-                                <h3 className="product-name">{product.name}</h3>
-                                <p className="product-description">{product.description}</p>
-                                <div className="product-features">
-                                    {product.features.map((feature) => (
-                                        <span key={feature} className="product-feature">{feature}</span>
+                                <p className="product-description">{p.description}</p>
+                                <div className="product-tags">
+                                    {p.features.map((f) => (
+                                        <span key={f} className="tag">{f}</span>
                                     ))}
                                 </div>
+                                <button className="btn-product">
+                                    Explore Product
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     ))}

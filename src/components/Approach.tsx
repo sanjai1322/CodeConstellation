@@ -1,79 +1,86 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Approach.css';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
     {
         number: '01',
-        title: 'Understand',
-        subtitle: 'the Problem',
-        description: 'Deep dive into your needs, goals, and constraints.',
-        color: '#8b5cf6',
+        icon: '🔍',
+        title: 'Analyze',
+        subtitle: 'the Vision',
+        description: 'We dissect your objectives and constraints to architect a future-proof roadmap.',
+        features: ['Requirements Mapping', 'Feasibility Study', 'Tech Audit'],
     },
     {
         number: '02',
-        title: 'Design',
-        subtitle: 'the System',
-        description: 'Architecture, UX flows, and technical planning.',
-        color: '#6366f1',
+        icon: '🏗️',
+        title: 'Architect',
+        subtitle: 'the Solution',
+        description: 'Elite technical planning and UI/UX engineering for maximum scalability.',
+        features: ['System Design', 'Data Modeling', 'UI Prototyping'],
     },
     {
         number: '03',
-        title: 'Build',
-        subtitle: 'with AI + Code',
-        description: 'Modern development with AI-assisted tooling.',
-        color: '#3b82f6',
+        icon: '⚡',
+        title: 'Engineer',
+        subtitle: 'with Precision',
+        description: 'Developing high-performance systems with AI-augmented workflows.',
+        features: ['Full-Stack Dev', 'AI Integration', 'Testing'],
     },
     {
         number: '04',
-        title: 'Ship',
-        subtitle: 'Test & Iterate',
-        description: 'Launch fast, gather feedback, and improve.',
-        color: '#06b6d4',
+        icon: '🚀',
+        title: 'Deploy',
+        subtitle: '& Accelerate',
+        description: 'Seamless launch followed by rapid iteration and ongoing support.',
+        features: ['CI/CD Pipeline', 'Monitoring', 'Iteration'],
     },
 ];
 
 const Approach = () => {
     return (
-        <section className="approach section">
-            <div className="approach-bg">
-                <div className="approach-glow"></div>
-            </div>
-
+        <section id="process" className="approach section">
             <div className="container">
-                <h2 className="section-title">
-                    Our <span className="gradient-text">Approach</span>
-                </h2>
-                <p className="section-subtitle">
-                    A streamlined process from idea to production-ready product.
-                </p>
+                <div className="approach-header">
+                    <div className="section-label">Our Process</div>
+                    <h2 className="section-title">
+                        Digital <span className="gradient-text">Mastery</span>
+                    </h2>
+                    <p className="section-subtitle">
+                        Our methodology for engineering world-class digital systems.
+                    </p>
+                </div>
 
-                <div className="approach-steps">
-                    {steps.map((step, index) => (
-                        <div key={step.number} className="approach-step-wrapper">
-                            <div
-                                className="approach-step spotlight-card card-premium"
-                                style={{ '--step-color': step.color } as React.CSSProperties}
-                            >
-                                <div className="step-number-wrapper">
-                                    <span className="step-number">{step.number}</span>
-                                    <div className="step-number-ring"></div>
-                                </div>
-                                <h3 className="step-title">
-                                    {step.title}
-                                    <span className="step-subtitle">{step.subtitle}</span>
-                                </h3>
-                                <p className="step-description">{step.description}</p>
+                {/* Horizontal connector line */}
+                <div className="approach-connector">
+                    <div className="connector-line" />
+                    <div className="connector-glow" />
+                </div>
+
+                <div className="approach-grid">
+                    {steps.map((step, i) => (
+                        <div key={step.number} className="approach-card" style={{ '--delay': `${i * 0.08}s` } as React.CSSProperties}>
+                            {/* Top: large number watermark */}
+                            <div className="card-number-bg">{step.number}</div>
+
+                            {/* Node on the connector */}
+                            <div className="card-node">
+                                <div className="card-node-dot" />
+                                <div className="card-node-ring" />
                             </div>
-                            {index < steps.length - 1 && (
-                                <div className="step-connector">
-                                    <div className="connector-line"></div>
-                                    <div className="connector-dot"></div>
+
+                            <div className="card-icon">{step.icon}</div>
+
+                            <div className="card-content">
+                                <span className="card-num-badge">{step.number}</span>
+                                <h3 className="card-title">{step.title}</h3>
+                                <span className="card-subtitle">{step.subtitle}</span>
+                                <p className="card-description">{step.description}</p>
+
+                                <div className="card-features">
+                                    {step.features.map((f) => (
+                                        <span key={f} className="card-feature">{f}</span>
+                                    ))}
                                 </div>
-                            )}
+                            </div>
                         </div>
                     ))}
                 </div>

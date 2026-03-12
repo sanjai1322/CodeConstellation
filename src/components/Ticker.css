@@ -1,0 +1,70 @@
+/* ============================================================
+   TICKER — Scrolling Capabilities Strip
+   ============================================================ */
+.ticker {
+    border-top: 1px solid rgba(96, 165, 250, 0.08);
+    border-bottom: 1px solid rgba(96, 165, 250, 0.08);
+    padding: 20px 0;
+    overflow: hidden;
+    position: relative;
+    background: rgba(6, 13, 27, 0.6);
+}
+
+.ticker::before,
+.ticker::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.ticker::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-base), transparent);
+}
+
+.ticker::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-base), transparent);
+}
+
+.ticker-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    white-space: nowrap;
+    animation: ticker-scroll 40s linear infinite;
+    width: max-content;
+}
+
+.ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0 24px;
+}
+
+.ticker-dot {
+    color: var(--accent-primary);
+    font-size: 8px;
+    opacity: 0.6;
+}
+
+@keyframes ticker-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
