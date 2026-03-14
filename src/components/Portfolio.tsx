@@ -42,6 +42,7 @@ const allProjects: Project[] = [
     stack: ['Three.js', 'GLSL', 'React'],
     cat: ['data'],
     featured: true,
+    link: 'https://3d-earth-livid.vercel.app/',
   },
   {
     name: 'Luxe Estate',

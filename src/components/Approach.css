@@ -1,1 +1,308 @@
-/* ============================================================\r\n   APPROACH — 4-Column Premium Process Cards\r\n   ============================================================ */\r\n.approach-header {\r\n    margin-bottom: 48px;\r\n}\r\n\r\n/* ── Horizontal Connector ── */\r\n.approach-connector {\r\n    position: relative;\r\n    height: 2px;\r\n    margin-bottom: 0;\r\n    display: none;\r\n    /* shown on desktop */\r\n}\r\n\r\n/* ── Cards Grid ── */\r\n.approach-grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(4, 1fr);\r\n    gap: 16px;\r\n    position: relative;\r\n}\r\n\r\n/* ── Card ── */\r\n.approach-card {\r\n    position: relative;\r\n    background: var(--bg-surface);\r\n    border: 1px solid var(--border-default);\r\n    border-radius: var(--radius-xl);\r\n    padding: 32px 24px 28px;\r\n    overflow: hidden;\r\n    transition:\r\n        transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),\r\n        box-shadow 0.35s ease,\r\n        border-color 0.3s ease;\r\n}\r\n\r\n.approach-card::before {\r\n    content: '';\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    height: 2px;\r\n    background: linear-gradient(90deg, var(--accent-primary), var(--accent-light));\r\n    transform: scaleX(0);\r\n    transform-origin: left;\r\n    transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);\r\n}\r\n\r\n.approach-card:hover {\r\n    transform: translateY(-6px);\r\n    border-color: var(--border-strong);\r\n    box-shadow:\r\n        0 12px 40px rgba(37, 99, 235, 0.12),\r\n        0 0 0 1px rgba(96, 165, 250, 0.08);\r\n}\r\n\r\n.approach-card:hover::before {\r\n    transform: scaleX(1);\r\n}\r\n\r\n/* ── Watermark Number ── */\r\n.card-number-bg {\r\n    position: absolute;\r\n    top: -12px;\r\n    right: -4px;\r\n    font-family: var(--font-heading);\r\n    font-size: 120px;\r\n    font-weight: 900;\r\n    color: rgba(96, 165, 250, 0.04);\r\n    line-height: 1;\r\n    pointer-events: none;\r\n    user-select: none;\r\n    transition: color 0.4s ease;\r\n}\r\n\r\n.approach-card:hover .card-number-bg {\r\n    color: rgba(96, 165, 250, 0.07);\r\n}\r\n\r\n/* ── Top Node (above card) ── */\r\n.card-node {\r\n    position: absolute;\r\n    top: -1px;\r\n    left: 32px;\r\n    transform: translateY(-50%);\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    z-index: 3;\r\n}\r\n\r\n.card-node-dot {\r\n    width: 8px;\r\n    height: 8px;\r\n    border-radius: 50%;\r\n    background: var(--accent-primary);\r\n    box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);\r\n    z-index: 2;\r\n}\r\n\r\n.card-node-ring {\r\n    position: absolute;\r\n    width: 20px;\r\n    height: 20px;\r\n    border-radius: 50%;\r\n    border: 1px solid rgba(96, 165, 250, 0.2);\r\n    animation: node-pulse 3s ease-in-out infinite;\r\n    animation-delay: var(--delay, 0s);\r\n}\r\n\r\n@keyframes node-pulse {\r\n\r\n    0%,\r\n    100% {\r\n        transform: scale(1);\r\n        opacity: 0.6;\r\n    }\r\n\r\n    50% {\r\n        transform: scale(1.5);\r\n        opacity: 0;\r\n    }\r\n}\r\n\r\n/* ── Icon ── */\r\n.card-icon {\r\n    width: 48px;\r\n    height: 48px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    background: var(--bg-elevated);\r\n    border: 1px solid var(--border-subtle);\r\n    border-radius: var(--radius-md);\r\n    font-size: 22px;\r\n    margin-bottom: 20px;\r\n    transition: border-color 0.3s ease, box-shadow 0.3s ease;\r\n}\r\n\r\n.approach-card:hover .card-icon {\r\n    border-color: rgba(96, 165, 250, 0.25);\r\n    box-shadow: 0 0 20px rgba(59, 130, 246, 0.12);\r\n}\r\n\r\n/* ── Content ── */\r\n.card-num-badge {\r\n    display: inline-block;\r\n    font-family: var(--font-heading);\r\n    font-size: 10px;\r\n    font-weight: 700;\r\n    color: var(--accent-light);\r\n    background: rgba(37, 99, 235, 0.1);\r\n    border: 1px solid rgba(37, 99, 235, 0.18);\r\n    border-radius: 100px;\r\n    padding: 2px 10px;\r\n    margin-bottom: 12px;\r\n    letter-spacing: 0.08em;\r\n    text-transform: uppercase;\r\n}\r\n\r\n.card-title {\r\n    font-family: var(--font-heading);\r\n    font-size: 22px;\r\n    font-weight: 800;\r\n    color: var(--text-primary);\r\n    letter-spacing: -0.02em;\r\n    line-height: 1.2;\r\n}\r\n\r\n.card-subtitle {\r\n    display: block;\r\n    font-size: 14px;\r\n    color: var(--accent-light);\r\n    font-weight: 500;\r\n    margin-bottom: 10px;\r\n}\r\n\r\n.card-description {\r\n    font-size: 13px;\r\n    color: var(--text-secondary);\r\n    line-height: 1.7;\r\n    margin-bottom: 18px;\r\n}\r\n\r\n/* ── Feature Tags ── */\r\n.card-features {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    gap: 5px;\r\n}\r\n\r\n.card-feature {\r\n    font-size: 11px;\r\n    font-weight: 500;\r\n    color: var(--text-muted);\r\n    background: var(--bg-elevated);\r\n    border: 1px solid var(--border-subtle);\r\n    border-radius: 100px;\r\n    padding: 3px 10px;\r\n    letter-spacing: 0.02em;\r\n    transition: color 0.2s ease, border-color 0.2s ease;\r\n}\r\n\r\n.approach-card:hover .card-feature {\r\n    color: var(--text-secondary);\r\n    border-color: rgba(96, 165, 250, 0.15);\r\n}\r\n\r\n/* ============================================================\r\n   RESPONSIVE\r\n   ============================================================ */\r\n@media (max-width: 1024px) {\r\n    .approach-grid {\r\n        grid-template-columns: repeat(2, 1fr);\r\n        gap: 16px;\r\n    }\r\n}\r\n\r\n@media (max-width: 768px) {\r\n    .approach-header {\r\n        text-align: center;\r\n        margin-bottom: 36px;\r\n    }\r\n\r\n    .approach-grid {\r\n        grid-template-columns: 1fr;\r\n        gap: 14px;\r\n    }\r\n\r\n    .approach-card {\r\n        padding: 28px 20px 24px;\r\n    }\r\n\r\n    .approach-card:hover {\r\n        transform: none;\r\n    }\r\n\r\n    .card-number-bg {\r\n        font-size: 80px;\r\n        top: -8px;\r\n    }\r\n\r\n    .card-title {\r\n        font-size: 20px;\r\n    }\r\n\r\n    .card-description {\r\n        font-size: 13px;\r\n        margin-bottom: 14px;\r\n    }\r\n\r\n    .card-icon {\r\n        width: 44px;\r\n        height: 44px;\r\n        font-size: 20px;\r\n        margin-bottom: 16px;\r\n    }\r\n}\r\n\r\n@media (max-width: 480px) {\r\n    .approach-card {\r\n        padding: 24px 16px 20px;\r\n    }\r\n\r\n    .card-number-bg {\r\n        font-size: 64px;\r\n    }\r\n\r\n    .card-title {\r\n        font-size: 18px;\r\n    }\r\n\r\n    .card-subtitle {\r\n        font-size: 13px;\r\n    }\r\n\r\n    .card-description {\r\n        font-size: 12px;\r\n    }\r\n\r\n    .card-feature {\r\n        font-size: 10px;\r\n        padding: 2px 8px;\r\n    }\r\n\r\n    .card-num-badge {\r\n        font-size: 9px;\r\n        padding: 2px 8px;\r\n    }\r\n}\r\n
+/* ============================================================
+   APPROACH — 4-Column Premium Process Cards
+   ============================================================ */
+.approach-header {
+    margin-bottom: 48px;
+}
+
+/* ── Horizontal Connector ── */
+.approach-connector {
+    position: relative;
+    height: 2px;
+    margin-bottom: 0;
+    display: none;
+}
+
+/* ── Cards Grid ── */
+.approach-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    position: relative;
+}
+
+/* ── Card ── */
+.approach-card {
+    position: relative;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: 32px 24px 28px;
+    overflow: hidden;
+    transition:
+        transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+        box-shadow 0.35s ease,
+        border-color 0.3s ease;
+}
+
+.approach-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-light));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.approach-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--border-strong);
+    box-shadow:
+        0 12px 40px rgba(37, 99, 235, 0.12),
+        0 0 0 1px rgba(96, 165, 250, 0.08);
+}
+
+.approach-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* ── Watermark Number ── */
+.card-number-bg {
+    position: absolute;
+    top: -12px;
+    right: -4px;
+    font-family: var(--font-heading);
+    font-size: 120px;
+    font-weight: 900;
+    color: rgba(96, 165, 250, 0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    transition: color 0.4s ease;
+}
+
+.approach-card:hover .card-number-bg {
+    color: rgba(96, 165, 250, 0.07);
+}
+
+/* ── Top Node (above card) ── */
+.card-node {
+    position: absolute;
+    top: -1px;
+    left: 32px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+.card-node-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
+    z-index: 2;
+}
+
+.card-node-ring {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(96, 165, 250, 0.2);
+    animation: node-pulse 3s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+@keyframes node-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* ── Icon ── */
+.card-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    font-size: 22px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.approach-card:hover .card-icon {
+    border-color: rgba(96, 165, 250, 0.25);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.12);
+}
+
+/* ── Content ── */
+.card-num-badge {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent-light);
+    background: rgba(37, 99, 235, 0.1);
+    border: 1px solid rgba(37, 99, 235, 0.18);
+    border-radius: 100px;
+    padding: 2px 10px;
+    margin-bottom: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.card-title {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.card-subtitle {
+    display: block;
+    font-size: 14px;
+    color: var(--accent-light);
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.card-description {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+/* ── Feature Tags ── */
+.card-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.card-feature {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 100px;
+    padding: 3px 10px;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.approach-card:hover .card-feature {
+    color: var(--text-secondary);
+    border-color: rgba(96, 165, 250, 0.15);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+    .approach-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .approach {
+        padding: 64px 0;
+        overflow: hidden;
+    }
+
+    .approach .container {
+        padding: 0 16px;
+    }
+
+    .approach-header {
+        text-align: center;
+        margin-bottom: 36px;
+    }
+
+    .approach-header .section-title {
+        font-size: clamp(28px, 7vw, 40px);
+        word-break: break-word;
+    }
+
+    .approach-header .section-subtitle {
+        font-size: 14px;
+        padding: 0 8px;
+    }
+
+    .approach-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .approach-card {
+        padding: 28px 20px 24px;
+    }
+
+    .approach-card:hover {
+        transform: none;
+    }
+
+    .card-number-bg {
+        font-size: 80px;
+        top: -8px;
+    }
+
+    .card-title {
+        font-size: 20px;
+    }
+
+    .card-description {
+        font-size: 13px;
+        margin-bottom: 14px;
+    }
+
+    .card-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .approach-card {
+        padding: 24px 16px 20px;
+    }
+
+    .card-number-bg {
+        font-size: 64px;
+    }
+
+    .card-title {
+        font-size: 18px;
+    }
+
+    .card-subtitle {
+        font-size: 13px;
+    }
+
+    .card-description {
+        font-size: 12px;
+    }
+
+    .card-feature {
+        font-size: 10px;
+        padding: 2px 8px;
+    }
+
+    .card-num-badge {
+        font-size: 9px;
+        padding: 2px 8px;
+    }
+}
