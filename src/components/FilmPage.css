@@ -1,0 +1,222 @@
+.film-page {
+    min-height: 100vh;
+    background: #05050a;
+    color: var(--text-primary);
+    padding: 60px 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.starfield-overlay {
+    position: fixed;
+    inset: 0;
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50px 160px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.back-btn {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    padding: 10px 18px;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    transform: translateX(-4px);
+}
+
+.film-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 40px auto 80px;
+    position: relative;
+    z-index: 1;
+}
+
+.film-label {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--accent-primary);
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+
+.film-title {
+    font-size: clamp(40px, 8vw, 72px);
+    font-family: var(--font-heading);
+    font-weight: 900;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+}
+
+.film-subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.video-card {
+    background: rgba(10, 10, 20, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(96, 165, 250, 0.3);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    background: #000;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-info {
+    padding: 32px;
+}
+
+.video-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.video-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.film-footer {
+    text-align: center;
+    margin-top: 100px;
+    padding: 40px 0;
+    color: var(--text-muted);
+    font-size: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ── Tablet ── */
+@media (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        max-width: 700px;
+        gap: 28px;
+    }
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    .film-page {
+        padding: 40px 16px;
+    }
+
+    .back-btn {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin-bottom: 24px;
+    }
+
+    .film-header {
+        margin: 16px auto 48px;
+    }
+
+    .film-title {
+        font-size: clamp(32px, 9vw, 48px);
+    }
+
+    .film-subtitle {
+        font-size: 15px;
+    }
+
+    .video-info {
+        padding: 24px 20px;
+    }
+
+    .video-title {
+        font-size: 18px;
+    }
+
+    .video-desc {
+        font-size: 14px;
+    }
+
+    .video-card:hover {
+        transform: none;
+    }
+
+    .film-footer {
+        margin-top: 60px;
+        padding: 28px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .film-page {
+        padding: 24px 12px;
+    }
+
+    .video-info {
+        padding: 20px 16px;
+    }
+
+    .video-title {
+        font-size: 16px;
+    }
+
+    .film-label {
+        font-size: 10px;
+    }
+
+    .video-card {
+        border-radius: 16px;
+    }
+}

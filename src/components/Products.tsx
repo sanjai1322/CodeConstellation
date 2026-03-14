@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 import './Products.css';
 
 const products = [
@@ -20,8 +22,27 @@ const products = [
 ];
 
 const Products = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.from('.product-card', {
+                opacity: 0,
+                y: 40,
+                duration: 1,
+                stagger: 0.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.products-grid',
+                    start: 'top 85%',
+                }
+            });
+        }, sectionRef);
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section id="products" className="products section">
+        <section id="products" className="products section" ref={sectionRef}>
             <div className="container">
                 <div className="products-header">
                     <div className="section-label">Our Work</div>

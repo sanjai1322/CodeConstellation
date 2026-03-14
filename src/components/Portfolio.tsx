@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Portfolio.css';
 
 /* ── Project Data ── */
@@ -53,16 +54,17 @@ const allProjects: Project[] = [
     link: 'https://luxeestatecc.vercel.app/',
   },
   {
-    name: 'Cosmos',
+    name: 'AI Film',
     emoji: '🎬',
     gradient: 'linear-gradient(135deg, #1a0a2e, #2e1a4e)',
     tags: [
       { label: 'AI Film', style: 'creative' },
-      { label: 'Veo 3.1', style: 'creative' },
+      { label: 'Veo Generation', style: 'creative' },
     ],
-    desc: '45-second cinematic AI brand film generated with Veo 3.1, Whisk visuals, and Suno soundtrack.',
+    desc: 'Cinematic AI brand film generated with Veo 3.1, Whisk visuals, and Suno soundtrack.',
     stack: ['Veo 3.1', 'Whisk', 'Suno'],
     cat: ['creative'],
+    link: '/ai-film',
   },
   {
     name: 'Porsche Experience',
@@ -190,13 +192,15 @@ const useMouseSpotlight = () => {
 /* ── Masonry Card Component ── */
 const MasonryCard = ({ project, active }: { project: Project; active: string }) => {
   const dimmed = active !== 'all' && !project.cat.includes(active);
+  const isInternal = project.link?.startsWith('/');
   
-  const CardWrapper = project.link ? 'a' : 'div';
+  const CardWrapper = project.link 
+    ? (isInternal ? Link : 'a') 
+    : 'div';
+
   const wrapperProps = project.link 
     ? { 
-        href: project.link, 
-        target: "_blank", 
-        rel: "noopener noreferrer",
+        ...(isInternal ? { to: project.link } : { href: project.link, target: "_blank", rel: "noopener noreferrer" }),
         className: `pf-masonry-card pf-link-card${project.featured ? ' featured' : ''}${dimmed ? ' dimmed' : ''}`
       }
     : { 

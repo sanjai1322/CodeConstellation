@@ -304,37 +304,57 @@
     .hero {
         padding-top: 100px;
         min-height: auto;
-        padding-bottom: 120px;
+        padding-bottom: 80px;
+    }
+
+    .hero-container {
+        padding: 0 20px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-logo-wrapper {
+        margin-bottom: 24px;
+    }
+
+    .hero-logo-mark {
+        width: 64px;
+        height: 64px;
     }
 
     .hero-title {
-        font-size: clamp(32px, 8vw, 48px);
+        font-size: clamp(32px, 10vw, 48px);
+        margin-bottom: 20px;
     }
 
     .hero-subtitle {
         font-size: 15px;
+        margin-bottom: 32px;
+        padding: 0 10px;
     }
 
     .hero-buttons {
         flex-direction: column;
         width: 100%;
+        gap: 12px;
+        margin-bottom: 48px;
     }
 
-    .hero-buttons .btn-primary,
-    .hero-buttons .btn-secondary {
+    .hero-buttons button {
         width: 100%;
         justify-content: center;
     }
 
     .hero-stats {
-        gap: 16px;
+        gap: 20px;
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .hero-orb {
-        width: 300px;
-        height: 300px;
+    .stat-divider {
+        display: none;
     }
 }
 

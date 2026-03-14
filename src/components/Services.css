@@ -99,10 +99,16 @@
 @media (max-width: 768px) {
     .services-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
     }
 
     .services-header {
         margin-bottom: 36px;
+        text-align: center;
+    }
+
+    .service-card {
+        padding: 28px 24px;
     }
 }
 

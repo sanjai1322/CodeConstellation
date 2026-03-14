@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 import './Approach.css';
 
 const steps = [
@@ -36,8 +38,27 @@ const steps = [
 ];
 
 const Approach = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.from('.approach-card', {
+                opacity: 0,
+                x: -30,
+                stagger: 0.15,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: '.approach-grid',
+                    start: 'top 80%',
+                }
+            });
+        }, sectionRef);
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section id="process" className="approach section">
+        <section id="process" className="approach section" ref={sectionRef}>
             <div className="container">
                 <div className="approach-header">
                     <div className="section-label">Our Process</div>
@@ -49,32 +70,16 @@ const Approach = () => {
                     </p>
                 </div>
 
-                {/* Horizontal connector line */}
-                <div className="approach-connector">
-                    <div className="connector-line" />
-                    <div className="connector-glow" />
-                </div>
-
                 <div className="approach-grid">
                     {steps.map((step, i) => (
                         <div key={step.number} className="approach-card" style={{ '--delay': `${i * 0.08}s` } as React.CSSProperties}>
-                            {/* Top: large number watermark */}
                             <div className="card-number-bg">{step.number}</div>
-
-                            {/* Node on the connector */}
-                            <div className="card-node">
-                                <div className="card-node-dot" />
-                                <div className="card-node-ring" />
-                            </div>
-
                             <div className="card-icon">{step.icon}</div>
-
                             <div className="card-content">
                                 <span className="card-num-badge">{step.number}</span>
                                 <h3 className="card-title">{step.title}</h3>
                                 <span className="card-subtitle">{step.subtitle}</span>
                                 <p className="card-description">{step.description}</p>
-
                                 <div className="card-features">
                                     {step.features.map((f) => (
                                         <span key={f} className="card-feature">{f}</span>

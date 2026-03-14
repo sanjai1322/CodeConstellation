@@ -52,7 +52,7 @@ const Navbar = () => {
                     </svg>
                 </a>
 
-                <button className="navbar-toggle" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
+                <button className={`navbar-toggle ${mobileOpen ? 'active' : ''}`} onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
                     <span /><span /><span />
                 </button>
             </div>

@@ -1,11 +1,41 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
 import './CTA.css';
 
 const CTA = () => {
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
     const formRef = useRef<HTMLFormElement>(null);
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.from('.cta-text', {
+                opacity: 0,
+                x: -50,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.cta-layout',
+                    start: 'top 80%',
+                }
+            });
+
+            gsap.from('.cta-form-wrapper', {
+                opacity: 0,
+                x: 50,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.cta-layout',
+                    start: 'top 80%',
+                }
+            });
+        }, sectionRef);
+        return () => ctx.revert();
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        // ... (existing submit logic)
         e.preventDefault();
 
         if (!formRef.current) return;

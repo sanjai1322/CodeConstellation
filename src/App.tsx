@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -12,10 +13,11 @@ import Education from './components/Education';
 import Approach from './components/Approach';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
+import FilmPage from './components/FilmPage'; // New component we'll create
 import useScrollAnimations from './hooks/useScrollAnimations';
 import usePremiumEffects from './hooks/usePremiumEffects';
 
-function App() {
+function MainSite() {
   useScrollAnimations();
   usePremiumEffects();
 
@@ -38,6 +40,17 @@ function App() {
       </main>
       <Footer />
     </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainSite />} />
+        <Route path="/ai-film" element={<FilmPage />} />
+      </Routes>
+    </Router>
   );
 }
 
