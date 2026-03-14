@@ -6,6 +6,7 @@ import Pillars from './components/Pillars';
 import Services from './components/Services';
 import Creative from './components/Creative';
 import CaseStudy from './components/CaseStudy';
+import Portfolio from './components/Portfolio';
 import WhyUs from './components/WhyUs';
 import Education from './components/Education';
 import Approach from './components/Approach';
@@ -29,6 +30,7 @@ function App() {
         <Services />
         <Creative />
         <CaseStudy />
+        <Portfolio />
         <WhyUs />
         <Education />
         <Approach />

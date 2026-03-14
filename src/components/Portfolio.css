@@ -1,0 +1,468 @@
+/* ============================================================
+   PORTFOLIO SHOWCASE — Radical Masonry
+   ============================================================ */
+.portfolio {
+  padding: var(--section-py) 0;
+  position: relative;
+  background: #020810;
+  overflow: hidden;
+}
+
+/* Deep Space Ambient Glow */
+.portfolio::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at center,
+      rgba(59, 130, 246, 0.04) 0%,
+      rgba(99, 102, 241, 0.03) 30%,
+      transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.portfolio-header {
+  text-align: center;
+  margin-bottom: 56px;
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #60a5fa;
+  margin-bottom: 24px;
+}
+
+.portfolio-label::before,
+.portfolio-label::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.5), transparent);
+}
+
+.portfolio-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #f8fafc;
+  margin-bottom: 24px;
+  letter-spacing: -0.03em;
+}
+
+.portfolio-title .gradient-violet {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #d946ef 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: pf-gradient-flow 4s ease infinite;
+}
+
+@keyframes pf-gradient-flow {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 200% center; }
+}
+
+.portfolio-subtitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 17px;
+  color: #94a3b8;
+  line-height: 1.6;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ── Filter Bar ── */
+.portfolio-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 64px;
+  position: relative;
+  z-index: 1;
+  padding: 0 24px;
+}
+
+.portfolio-filter-btn {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  white-space: nowrap;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.portfolio-filter-btn:hover {
+  color: #cbd5e1;
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+.portfolio-filter-btn.active {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #60a5fa;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+}
+
+.portfolio-filter-btn .filter-count {
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 8px;
+  border-radius: 100px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.portfolio-filter-btn.active .filter-count {
+  background: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+}
+
+/* ── Masonry Grid ── */
+.portfolio-masonry {
+  column-count: 3;
+  column-gap: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   RADICAL CARD DESIGN
+   ============================================================ */
+.pf-masonry-card {
+  break-inside: avoid;
+  margin-bottom: 24px;
+  border-radius: 32px;
+  background: rgba(13, 22, 36, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 40px 32px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    opacity 0.4s ease;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.pf-masonry-card.dimmed {
+  opacity: 0.1;
+  transform: scale(0.96);
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+/* Gradient Bleed Layer */
+.pf-card-bleed {
+  position: absolute;
+  inset: -50%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: 0;
+  pointer-events: none;
+  /* Background set inline via TSX using project.gradient */
+}
+
+/* Mouse tracking spotlight layer inside card */
+.pf-masonry-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.04),
+      transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pf-masonry-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+}
+
+.pf-masonry-card:hover .pf-card-bleed {
+  opacity: 0.15; /* Gradient bleeds through card */
+}
+
+.pf-masonry-card:hover::after {
+  opacity: 1;
+}
+
+/* Featured cards get extra height + styling */
+.pf-masonry-card.featured {
+  padding-bottom: 64px;
+}
+
+.pf-masonry-card.featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.4), transparent);
+  z-index: 2;
+}
+
+/* ── Giant Emoji Watermark ── */
+.pf-card-watermark {
+  position: absolute;
+  top: 16px;
+  right: -16px;
+  font-size: 140px;
+  line-height: 1;
+  opacity: 0.1;
+  transform: rotate(10deg);
+  z-index: 0;
+  transition:
+    transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.6s ease;
+  pointer-events: none;
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+}
+
+.pf-masonry-card:hover .pf-card-watermark {
+  transform: rotate(0deg) scale(1.1) translate(-10px, 10px);
+  opacity: 0.25;
+}
+
+/* ── Card Content ── */
+.pf-card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.pf-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: auto;
+  padding-bottom: 64px;
+}
+
+.pf-tag {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tag colors */
+.pf-tag-ai { color: #a78bfa; border-color: rgba(139, 92, 246, 0.3); }
+.pf-tag-web { color: #60a5fa; border-color: rgba(59, 130, 246, 0.3); }
+.pf-tag-aiapps { color: #818cf8; border-color: rgba(99, 102, 241, 0.3); } /* Indigo */
+.pf-tag-mobile { color: #f472b6; border-color: rgba(236, 72, 153, 0.3); }
+.pf-tag-data { color: #2dd4bf; border-color: rgba(20, 184, 166, 0.3); }
+.pf-tag-creative { color: #fbbf24; border-color: rgba(245, 158, 11, 0.3); }
+.pf-tag-real { color: #34d399; border-color: rgba(16, 185, 129, 0.3); }
+
+/* Bottom Aligned Text */
+.pf-card-bottom {
+  margin-top: auto;
+}
+
+.pf-card-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  transition: transform 0.4s ease;
+}
+
+.pf-masonry-card:hover .pf-card-name {
+  transform: translateX(4px);
+}
+
+.pf-card-desc {
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.pf-card-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pf-stack-pill {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+.pf-masonry-card:hover .pf-stack-pill {
+  color: #94a3b8;
+}
+
+/* Arrow */
+.pf-card-arrow {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #020810;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.8) translate(-10px, 10px);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 3;
+}
+
+.pf-masonry-card:hover .pf-card-arrow {
+  opacity: 1;
+  transform: scale(1) translate(0, 0);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+}
+
+/* ── Stats Bar ── */
+.portfolio-stats {
+  max-width: 1000px;
+  margin: 64px auto 0;
+  padding: 48px 24px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-stat {
+  text-align: center;
+}
+
+.portfolio-stat-number {
+  font-family: 'Syne', sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 8px;
+  text-shadow: 0 4px 24px rgba(255, 255, 255, 0.1);
+}
+
+.portfolio-stat-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Tablet (2 Columns) */
+@media (max-width: 1024px) {
+  .portfolio-masonry {
+    column-count: 2;
+    column-gap: 20px;
+  }
+
+  .pf-masonry-card {
+    padding: 32px 24px;
+    border-radius: 24px;
+  }
+
+  .pf-card-watermark {
+    font-size: 100px;
+    top: -10px;
+    right: -10px;
+  }
+
+  .pf-card-name {
+    font-size: 24px;
+  }
+
+  .portfolio-title {
+    font-size: clamp(34px, 6vw, 48px);
+  }
+}
+
+/* Mobile (1 Column) */
+@media (max-width: 768px) {
+  .portfolio-masonry {
+    column-count: 1;
+  }
+
+  .pf-masonry-card {
+    margin-bottom: 16px;
+  }
+
+  .portfolio-filters {
+    padding: 0 16px;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+
+  .portfolio-filter-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .portfolio-stats {
+    flex-direction: column;
+    gap: 32px;
+  }
+}
