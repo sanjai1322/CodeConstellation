@@ -177,6 +177,12 @@
     opacity 0.4s ease;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  text-decoration: none;
+}
+
+.pf-link-card {
+  text-decoration: none;
+  display: flex;
 }
 
 .pf-masonry-card.dimmed {

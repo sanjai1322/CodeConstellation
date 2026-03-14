@@ -10,6 +10,7 @@ interface Project {
   desc: string;
   stack: string[];
   cat: string[];
+  link?: string;
   featured?: boolean;
 }
 
@@ -26,6 +27,7 @@ const allProjects: Project[] = [
     desc: 'Premium SaaS landing page with animated hero, scroll-reveal sections, and glassmorphism components.',
     stack: ['React', 'Framer Motion', 'Three.js'],
     cat: ['web'],
+    link: 'https://proxima-saas-cc.vercel.app/',
   },
   {
     name: 'EarthPulse',
@@ -41,13 +43,14 @@ const allProjects: Project[] = [
     featured: true,
   },
   {
-    name: 'NewState',
+    name: 'Luxe Estate',
     emoji: '🏠',
     gradient: 'linear-gradient(135deg, #0f1f2e, #1a3348)',
     tags: [{ label: 'Real Estate', style: 'real' }],
-    desc: 'Modern real estate platform with property listings, map integration, and sleek search UX.',
+    desc: 'Premium luxury real estate platform with high-end listings, editorial layouts, and immersive property tours.',
     stack: ['Next.js', 'Maps API'],
     cat: ['real'],
+    link: 'https://luxeestatecc.vercel.app/',
   },
   {
     name: 'Cosmos',
@@ -73,6 +76,7 @@ const allProjects: Project[] = [
     stack: ['GSAP', 'Three.js'],
     cat: ['web'],
     featured: true,
+    link: 'https://redline-syndicate-homepage.vercel.app/',
   },
   {
     name: 'Smart Scheduler',
@@ -82,6 +86,7 @@ const allProjects: Project[] = [
     desc: 'AI-assisted scheduling web app with smart conflict detection and automated reminders.',
     stack: ['Next.js', 'Python'],
     cat: ['web'],
+    link: 'https://smart-scheduler-sable.vercel.app/',
   },
   {
     name: 'FinFlow',
@@ -116,6 +121,7 @@ const allProjects: Project[] = [
     desc: 'Luxury real estate brand site with editorial photography layout and premium typography.',
     stack: ['React', 'GSAP'],
     cat: ['real'],
+    link: 'https://prestigeestatescc.vercel.app/',
   },
   {
     name: 'AskDoc',
@@ -184,8 +190,22 @@ const useMouseSpotlight = () => {
 /* ── Masonry Card Component ── */
 const MasonryCard = ({ project, active }: { project: Project; active: string }) => {
   const dimmed = active !== 'all' && !project.cat.includes(active);
+  
+  const CardWrapper = project.link ? 'a' : 'div';
+  const wrapperProps = project.link 
+    ? { 
+        href: project.link, 
+        target: "_blank", 
+        rel: "noopener noreferrer",
+        className: `pf-masonry-card pf-link-card${project.featured ? ' featured' : ''}${dimmed ? ' dimmed' : ''}`
+      }
+    : { 
+        className: `pf-masonry-card${project.featured ? ' featured' : ''}${dimmed ? ' dimmed' : ''}`
+      };
+
   return (
-    <div className={`pf-masonry-card${project.featured ? ' featured' : ''}${dimmed ? ' dimmed' : ''}`}>
+    // @ts-ignore
+    <CardWrapper {...wrapperProps}>
       {/* Background Bleed Effect on Hover */}
       <div className="pf-card-bleed" style={{ background: project.gradient }} />
 
@@ -211,7 +231,7 @@ const MasonryCard = ({ project, active }: { project: Project; active: string }) 
       </div>
 
       <div className="pf-card-arrow"><ArrowIcon /></div>
-    </div>
+    </CardWrapper>
   );
 };
 
