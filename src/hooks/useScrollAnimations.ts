@@ -69,23 +69,6 @@ export const useScrollAnimations = () => {
         // CARD STAGGER ANIMATIONS
         // ═══════════════════════════════════════════
 
-        // Pillar cards — stagger up
-        gsap.fromTo('.pillar-card',
-            { opacity: 0, y: 50, scale: 0.97 },
-            {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 0.8,
-                stagger: 0.12,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '.pillars',
-                    start: 'top 82%',
-                }
-            }
-        );
-
         // Service cards — stagger cascade
         gsap.fromTo('.service-card',
             { opacity: 0, y: 45, scale: 0.96 },
@@ -103,8 +86,8 @@ export const useScrollAnimations = () => {
             }
         );
 
-        // Creative Studio cards — stagger with scale
-        gsap.fromTo('.creative-card',
+        // Studio Culture cards — stagger with scale
+        gsap.fromTo('.culture-card',
             { opacity: 0, y: 50, scale: 0.94 },
             {
                 opacity: 1,
@@ -114,7 +97,7 @@ export const useScrollAnimations = () => {
                 stagger: 0.12,
                 ease: 'power3.out',
                 scrollTrigger: {
-                    trigger: '.creative',
+                    trigger: '.culture',
                     start: 'top 82%',
                 }
             }
@@ -183,8 +166,8 @@ export const useScrollAnimations = () => {
             });
         });
 
-        // Why Us cards — wave stagger
-        gsap.fromTo('.why-card',
+        // Strategy Features — wave stagger
+        gsap.fromTo('.strategy-feature-item',
             { opacity: 0, y: 40 },
             {
                 opacity: 1,
@@ -192,29 +175,14 @@ export const useScrollAnimations = () => {
                 duration: 0.7,
                 stagger: { each: 0.08, from: 'start' },
                 scrollTrigger: {
-                    trigger: '.why-us',
+                    trigger: '.strategy',
                     start: 'top 82%',
                 }
             }
         );
 
-        // Course cards — slide from right
-        gsap.fromTo('.course-card',
-            { opacity: 0, x: 30 },
-            {
-                opacity: 1,
-                x: 0,
-                duration: 0.7,
-                stagger: 0.12,
-                scrollTrigger: {
-                    trigger: '.education',
-                    start: 'top 82%',
-                }
-            }
-        );
-
-        // Approach cards — stagger up
-        gsap.fromTo('.approach-card',
+        // Process Steps — stagger up
+        gsap.fromTo('.process-step',
             { opacity: 0, y: 45, scale: 0.96 },
             {
                 opacity: 1,
@@ -224,7 +192,7 @@ export const useScrollAnimations = () => {
                 stagger: 0.1,
                 ease: 'back.out(1.08)',
                 scrollTrigger: {
-                    trigger: '.approach',
+                    trigger: '.process-timeline',
                     start: 'top 82%',
                 }
             }

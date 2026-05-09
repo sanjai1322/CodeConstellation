@@ -69,6 +69,29 @@
     }
 }
 
+.ticker-track.reverse {
+    animation-direction: reverse;
+}
+
+.logos-ticker {
+    background: transparent;
+    border-top: none;
+    padding: 10px 0 30px;
+}
+
+.logo-item {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-muted);
+    opacity: 0.4;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.logo-item:hover {
+    opacity: 1;
+    color: var(--text-primary);
+}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */

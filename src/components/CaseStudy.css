@@ -136,7 +136,31 @@
 .case-stats {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 20px;
+}
+
+.case-impact {
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(96, 165, 250, 0.15);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    margin-bottom: 8px;
+}
+
+.impact-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--accent-light);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+}
+
+.impact-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.5;
 }
 
 .case-stat-row {

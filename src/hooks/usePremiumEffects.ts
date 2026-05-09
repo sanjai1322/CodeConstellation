@@ -18,7 +18,7 @@ export const usePremiumEffects = () => {
             // 1. MOUSE SPOTLIGHT — radial glow follows cursor on cards
             const handleMouseMove = (e: MouseEvent) => {
                 const cards = document.querySelectorAll<HTMLElement>(
-                    '.pillar-card, .service-card, .why-card, .course-card, .case-card, .cta-form-wrapper, .creative-card, .approach-card'
+                    '.service-card, .case-card, .cta-form-wrapper, .culture-card, .strategy-feature-item, .process-step'
                 );
                 cards.forEach((card) => {
                     const rect = card.getBoundingClientRect();
@@ -31,7 +31,7 @@ export const usePremiumEffects = () => {
 
             // 2. 3D TILT — cards subtly tilt toward cursor
             const tiltCards = document.querySelectorAll<HTMLElement>(
-                '.pillar-card, .service-card, .case-card, .creative-card'
+                '.service-card, .case-card, .culture-card, .process-step'
             );
 
             const handleTiltMove = (e: MouseEvent) => {
@@ -111,7 +111,7 @@ export const usePremiumEffects = () => {
         // ═══════════════════════════════════════════
         if (isTouch) {
             const allCards = document.querySelectorAll<HTMLElement>(
-                '.pillar-card, .service-card, .why-card, .course-card, .case-card, .cta-form-wrapper, .creative-card, .approach-card'
+                '.service-card, .case-card, .cta-form-wrapper, .culture-card, .strategy-feature-item, .process-step'
             );
 
             allCards.forEach((card) => {

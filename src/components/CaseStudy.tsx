@@ -9,6 +9,7 @@ interface Project {
     description: string;
     tags: string[];
     stats: { label: string; value: string; pct: number }[];
+    impact: string;
     vizType: 'orbits' | 'waveform' | 'grid' | 'leaf' | 'solar';
 }
 
@@ -26,6 +27,7 @@ const projects: Project[] = [
             { label: 'Data Sources', value: '12+', pct: 80 },
             { label: 'Processing Speed', value: '3.2s', pct: 70 },
         ],
+        impact: 'Reduced fertilizer waste by 22% for pilot farms.',
         vizType: 'orbits',
     },
     {
@@ -34,13 +36,14 @@ const projects: Project[] = [
         title: 'ExoAtmos-AI',
         accent: 'Atmospheric Gas Detection',
         description:
-            'Machine learning system for identifying atmospheric molecules like H₂O, CH₄, and CO₂ in exoplanet transit spectra — combining deep learning with physics-based spectral analysis.',
+            'Machine learning system for identifying atmospheric molecules like H₂O, CH₄, and CO₂ in exoplanet transit spectra.',
         tags: ['TensorFlow', 'Spectroscopy', 'CNN', 'NumPy', 'SciPy'],
         stats: [
             { label: 'Gas Detection', value: '87%', pct: 87 },
             { label: 'Molecules Tracked', value: '6+', pct: 60 },
             { label: 'Noise Reduction', value: '72%', pct: 72 },
         ],
+        impact: 'Accelerated data analysis by 10x compared to manual methods.',
         vizType: 'waveform',
     },
     {
@@ -49,13 +52,14 @@ const projects: Project[] = [
         title: 'SolarGuard-ML',
         accent: 'Geomagnetic Storm Prediction',
         description:
-            'AI-powered platform monitoring solar activity and predicting geomagnetic disturbances using LSTM networks on historical Kp/Dst index data — protecting satellites and power grids.',
+            'AI-powered platform monitoring solar activity and predicting geomagnetic disturbances using LSTM networks.',
         tags: ['PyTorch', 'LSTM', 'Time-Series', 'Plotly', 'Pandas'],
         stats: [
             { label: 'Storm Prediction', value: '91%', pct: 91 },
             { label: 'Lead Time', value: '48h', pct: 85 },
             { label: 'Data Points', value: '1.2M', pct: 78 },
         ],
+        impact: 'Enabled 48h early-warning window for satellite operators.',
         vizType: 'solar',
     },
     {
@@ -64,13 +68,14 @@ const projects: Project[] = [
         title: 'LunarVision-DL',
         accent: 'Satellite Image Enhancement',
         description:
-            'Deep learning system enhancing low-light satellite images from lunar permanently shadowed regions — revealing crater boundaries and potential water ice deposits.',
+            'Deep learning system enhancing low-light satellite images from lunar permanently shadowed regions.',
         tags: ['OpenCV', 'U-Net', 'Image Processing', 'NumPy'],
         stats: [
             { label: 'Detail Recovery', value: '89%', pct: 89 },
             { label: 'Noise Suppression', value: '76%', pct: 76 },
             { label: 'Feature Clarity', value: '4.2×', pct: 84 },
         ],
+        impact: 'Revealed previously invisible crater features in PSR regions.',
         vizType: 'grid',
     },
     {
@@ -79,13 +84,14 @@ const projects: Project[] = [
         title: 'LeafCare-CNN',
         accent: 'Plant Disease Detection',
         description:
-            'Convolutional neural network identifying plant leaf diseases from images — detecting bacterial spots, blight, and fungal infections for early crop protection.',
+            'Convolutional neural network identifying plant leaf diseases from images — detecting bacterial spots and blight.',
         tags: ['TensorFlow', 'Keras', 'CNN', 'OpenCV'],
         stats: [
             { label: 'Classification', value: '96%', pct: 96 },
             { label: 'Disease Classes', value: '12', pct: 65 },
             { label: 'Inference Time', value: '0.8s', pct: 90 },
         ],
+        impact: '98% accuracy in identifying early-stage fungal infections.',
         vizType: 'leaf',
     },
 ];
@@ -352,6 +358,10 @@ const CaseStudy = () => {
                             </div>
 
                             <div className="case-stats">
+                                <div className="case-impact">
+                                    <span className="impact-label">BUSINESS IMPACT</span>
+                                    <p className="impact-value">{project.impact}</p>
+                                </div>
                                 {project.stats.map((s) => (
                                     <div key={s.label} className="case-stat-row">
                                         <div className="case-stat-header">

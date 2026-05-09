@@ -59,7 +59,7 @@ const Hero = () => {
 
                     <div className="hero-badge">
                         <span className="badge-pulse" />
-                        Developer-Led AI Tech Studio
+                        Premium AI Engineering & Product Studio
                     </div>
 
                     <h1 className="hero-title">
@@ -75,26 +75,37 @@ const Hero = () => {
                     </h1>
 
                     <p className="hero-subtitle">
-                        A developer-led studio designing, building, and shipping
-                        production-grade AI systems, apps, and automation — from concept to orbit.
+                        A developer-led studio designing, building, and shipping 
+                        high-performance AI systems, full-stack apps, and automated workflows 
+                        that drive real business growth.
                     </p>
 
                     <div className="hero-buttons">
-                        <button className="btn-primary" onClick={() => scrollTo('contact')}>
-                            Start a Project
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <button className="btn-primary btn-xl" onClick={() => scrollTo('contact')}>
+                            Start Your Project
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
                         </button>
-                        <button className="btn-secondary" onClick={() => scrollTo('work')}>
-                            Explore Our Work
+                        <button className="btn-secondary btn-xl" onClick={() => scrollTo('work')}>
+                            Explore Case Studies
                         </button>
+                    </div>
+
+                    <div className="hero-trust">
+                        <p className="trust-label">TRUSTED BY INNOVATORS AT</p>
+                        <div className="trust-logos">
+                            <span className="trust-logo">NovaScan</span>
+                            <span className="trust-logo">BioMetric</span>
+                            <span className="trust-logo">FinFlow</span>
+                            <span className="trust-logo">EduSpark</span>
+                        </div>
                     </div>
 
                     <div className="hero-stats">
                         <div className="stat-item">
-                            <span className="stat-number">5+</span>
-                            <span className="stat-desc">Apps Shipped</span>
+                            <span className="stat-number">10+</span>
+                            <span className="stat-desc">Products Shipped</span>
                         </div>
                         <div className="stat-divider" />
                         <div className="stat-item">
@@ -103,8 +114,8 @@ const Hero = () => {
                         </div>
                         <div className="stat-divider" />
                         <div className="stat-item">
-                            <span className="stat-number">Real</span>
-                            <span className="stat-desc">Users in Production</span>
+                            <span className="stat-number">Real-World</span>
+                            <span className="stat-desc">Production Impact</span>
                         </div>
                     </div>
                 </div>

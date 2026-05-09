@@ -72,8 +72,8 @@ const CTA = () => {
                     <div className="cta-text">
                         <div className="section-label">Get Started</div>
                         <h2 className="section-title">
-                            Let's Build Your{' '}
-                            <span className="gradient-text">Digital Empire</span>
+                            Ready to Build Your{' '}
+                            <span className="gradient-text">Next Big Thing?</span>
                         </h2>
                         <p className="cta-description">
                             From prototype to high-performance production systems.

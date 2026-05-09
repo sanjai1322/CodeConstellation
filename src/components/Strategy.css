@@ -1,0 +1,129 @@
+.strategy {
+    background: var(--bg-base);
+}
+
+.strategy-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.strategy-features {
+    display: grid;
+    gap: 32px;
+    margin-top: 48px;
+}
+
+.strategy-feature-item {
+    display: flex;
+    gap: 20px;
+}
+
+.feature-icon {
+    font-size: 24px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
+.feature-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.feature-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Timeline */
+.process-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.process-timeline::before {
+    content: '';
+    position: absolute;
+    left: 40px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent-primary), transparent);
+    opacity: 0.3;
+}
+
+.process-step {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    position: relative;
+    z-index: 1;
+    transition: all var(--transition);
+}
+
+.process-step:hover {
+    border-color: var(--border-strong);
+}
+
+.process-num {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-primary);
+    color: #fff;
+    font-weight: 800;
+    font-size: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+}
+
+.process-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.process-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 1024px) {
+    .strategy-layout {
+        grid-template-columns: 1fr;
+        gap: 64px;
+    }
+}
+
+@media (max-width: 768px) {
+    .strategy-feature-item {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .process-step {
+        padding: 16px;
+    }
+}
