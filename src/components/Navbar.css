@@ -76,45 +76,25 @@
 }
 
 /* CTA Button */
-.navbar-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 9px 20px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--accent-light);
-    border: 1px solid rgba(96, 165, 250, 0.3);
-    border-radius: var(--radius-md);
-    text-decoration: none;
-    transition: all var(--transition);
-    position: relative;
+.navbar-cta.btn-prominent {
+    background: var(--brand-orange) !important;
+    padding: 10px 24px !important;
+    font-size: 15px !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3) !important;
 }
 
-.navbar-cta::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: var(--radius-md);
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(96, 165, 250, 0.1));
-    opacity: 0;
-    transition: opacity var(--transition);
-    z-index: -1;
-}
-
-.navbar-cta:hover {
-    color: var(--text-primary);
-    border-color: rgba(96, 165, 250, 0.5);
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
-}
-
-.navbar-cta:hover::before {
-    opacity: 1;
+.navbar-cta.btn-prominent:hover {
+    background: #ff7b1a !important;
+    box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4) !important;
+    transform: translateY(-1px);
 }
 
 .navbar-cta svg {
     width: 14px;
     height: 14px;
+    stroke: currentColor;
 }
 
 /* Mobile Toggle */

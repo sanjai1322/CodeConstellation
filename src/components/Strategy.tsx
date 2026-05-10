@@ -1,23 +1,12 @@
 import './Strategy.css';
 
-const features = [
-    {
-        icon: '🚀',
-        title: 'Production First',
-        description: 'We don\'t just build MVPs. We build production-ready systems that are battle-tested in the real world.',
-    },
-    {
-        icon: '🎯',
-        title: 'Direct Ownership',
-        description: 'Work directly with the engineers. No middlemen, no confusion, just technical expertise.',
-    },
-];
+const features = [];
 
 const steps = [
-    { num: '01', title: 'Discovery', desc: 'Requirements Mapping & Tech Audit' },
-    { num: '02', title: 'Design', desc: 'System Design & UI Prototyping' },
-    { num: '03', title: 'Build', desc: 'Full-Stack Dev & AI Integration' },
-    { num: '04', title: 'Ship', desc: 'CI/CD & Ongoing Iteration' },
+    { num: '01', title: 'Discovery', desc: 'We map requirements and perform a technical audit.' },
+    { num: '02', title: 'Design', desc: 'We create system architecture and UI prototypes.' },
+    { num: '03', title: 'Build', desc: 'We develop the full-stack system with AI integration.' },
+    { num: '04', title: 'Ship', desc: 'We deploy via CI/CD and begin rapid iteration.' },
 ];
 
 const Strategy = () => {
@@ -35,17 +24,6 @@ const Strategy = () => {
                             high-impact digital systems.
                         </p>
                         
-                        <div className="strategy-features">
-                            {features.map((f, i) => (
-                                <div key={i} className="strategy-feature-item">
-                                    <span className="feature-icon">{f.icon}</span>
-                                    <div>
-                                        <h4 className="feature-title">{f.title}</h4>
-                                        <p className="feature-desc">{f.description}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
                     </div>
                     
                     <div className="strategy-right">

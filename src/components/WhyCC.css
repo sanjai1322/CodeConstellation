@@ -1,0 +1,66 @@
+.why {
+    position: relative;
+    overflow: hidden;
+}
+
+.why .eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--accent-light);
+    margin-bottom: 12px;
+    display: block;
+}
+
+.why .section-title {
+    margin-bottom: 60px;
+}
+
+.usp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.usp-card {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+}
+
+.usp-card-title {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.usp-card-desc {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (max-width: 1024px) {
+    .usp-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .usp-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .why .section-title {
+        margin-bottom: 40px;
+    }
+    
+    .usp-card {
+        padding: 32px;
+    }
+}

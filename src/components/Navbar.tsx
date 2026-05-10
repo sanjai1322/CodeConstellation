@@ -46,7 +46,7 @@ const Navbar = () => {
                     <li><a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a></li>
                 </ul>
 
-                <a href="#contact" className="navbar-cta" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>
+                <a href="#contact" className="navbar-cta btn-prominent" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>
                     Start a Project
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                         <path d="M5 12h14M12 5l7 7-7 7" />

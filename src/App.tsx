@@ -7,6 +7,7 @@ import Services from './components/Services';
 import CaseStudy from './components/CaseStudy';
 import Testimonials from './components/Testimonials';
 import Strategy from './components/Strategy';
+import WhyCC from './components/WhyCC';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import FilmPage from './components/FilmPage';
@@ -27,6 +28,7 @@ function MainSite() {
         <Services />
         <CaseStudy />
         <Testimonials />
+        <WhyCC />
         <Strategy />
         <CTA />
       </main>

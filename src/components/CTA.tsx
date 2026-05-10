@@ -124,7 +124,7 @@ const CTA = () => {
                             </div>
                             <button
                                 type="submit"
-                                className="btn-primary cta-submit"
+                                className="btn-primary cta-submit btn-prominent"
                                 disabled={status === 'submitting'}
                                 style={status === 'success' ? { background: 'linear-gradient(135deg, #059669, #10b981)' } : undefined}
                             >

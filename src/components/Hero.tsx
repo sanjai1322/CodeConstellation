@@ -71,7 +71,7 @@ const Hero = () => {
                     </p>
 
                     <div className="hero-buttons">
-                        <button className="btn-primary btn-xl" onClick={() => scrollTo('contact')}>
+                        <button className="btn-primary btn-xl btn-prominent" onClick={() => scrollTo('contact')}>
                             Start a project →
                         </button>
                         <a href="#work" className="hero-link" onClick={(e) => { e.preventDefault(); scrollTo('work'); }}>
@@ -79,15 +79,6 @@ const Hero = () => {
                         </a>
                     </div>
 
-                    <div className="hero-trust">
-                        <p className="trust-label">TRUSTED BY INNOVATORS AT</p>
-                        <div className="trust-logos">
-                            <span className="trust-logo">NovaScan</span>
-                            <span className="trust-logo">BioMetric</span>
-                            <span className="trust-logo">FinFlow</span>
-                            <span className="trust-logo">EduSpark</span>
-                        </div>
-                    </div>
 
                     <div className="hero-stats">
                         <div className="stat-item">

@@ -5,22 +5,19 @@ const services = [
         icon: '🤖',
         num: '01',
         title: 'AI Products',
-        description: 'Custom LLM agents, R&D prototypes, and production-grade AI systems built for scale.',
-        features: ['Custom Agents', 'RAG Systems', 'LLM Integration'],
+        description: 'Custom LLM agents, R&D prototypes, and production AI systems built for scale.',
     },
     {
         icon: '🌐',
         num: '02',
         title: 'Web Systems',
-        description: 'High-performance full-stack applications and SaaS platforms built with Next.js and React.',
-        features: ['Scalable Architecture', 'SEO Optimized', 'Premium UI'],
+        description: 'High-performance full-stack applications and SaaS platforms built with React.',
     },
     {
         icon: '⚙️',
         num: '03',
         title: 'Automation',
-        description: 'Deeply integrated workflows and automated pipelines that handle complex business logic.',
-        features: ['Multi-Tool Pipelines', 'API Design', 'Cloud Workflows'],
+        description: 'Deeply integrated workflows and automated pipelines for complex business logic.',
     },
 ];
 
@@ -47,11 +44,6 @@ const Services = () => {
                             </div>
                             <h3 className="service-title">{s.title}</h3>
                             <p className="service-description">{s.description}</p>
-                            <div className="service-tags">
-                                {s.features.map((f) => (
-                                    <span key={f} className="tag">{f}</span>
-                                ))}
-                            </div>
                         </div>
                     ))}
                 </div>

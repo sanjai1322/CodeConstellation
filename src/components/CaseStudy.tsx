@@ -21,13 +21,11 @@ const projects: Project[] = [
         accent: 'Precision Agriculture System',
         description:
             'Predictive modeling for crop health using satellite imagery and real-time soil data.',
-        tags: ['PyTorch', 'Satellite Data', 'Precision Ag'],
+        tags: [],
         stats: [
             { label: 'Built In', value: '3 Weeks', pct: 100 },
-            { label: 'Data Sources', value: '12+', pct: 80 },
-            { label: 'Impact', value: '22% Efficiency', pct: 70 },
         ],
-        impact: 'Reduced operational costs by 22% for pilot farms.',
+        impact: '',
         vizType: 'orbits',
     },
     {
@@ -37,13 +35,11 @@ const projects: Project[] = [
         accent: 'Scientific Data Dashboard',
         description:
             'Production-ready dashboard for identifying atmospheric molecules in exoplanet spectra.',
-        tags: ['TensorFlow', 'Spectroscopy', 'React'],
+        tags: [],
         stats: [
             { label: 'Deployment', value: '14 Days', pct: 100 },
-            { label: 'Molecules', value: '6+', pct: 60 },
-            { label: 'Analysis', value: '10x Faster', pct: 72 },
         ],
-        impact: 'Accelerated research analysis by 10x for the astrophysics team.',
+        impact: '',
         vizType: 'waveform',
     },
     {
@@ -53,30 +49,12 @@ const projects: Project[] = [
         accent: 'Automated Audit Platform',
         description:
             'AI-powered website audit tool providing structural and content feedback in seconds.',
-        tags: ['Next.js', 'Puppeteer', 'Gemini AI'],
+        tags: [],
         stats: [
-            { label: 'Users', value: '500+', pct: 85 },
             { label: 'Audit Time', value: '45s', pct: 95 },
-            { label: 'Accuracy', value: '98%', pct: 98 },
         ],
-        impact: 'Scaled internal audit processes by 5x while maintaining quality.',
+        impact: '',
         vizType: 'solar',
-    },
-    {
-        id: 'leafcare',
-        label: 'Mobile App',
-        title: 'LeafCare-App',
-        accent: 'Disease Detection System',
-        description:
-            'Cross-platform mobile application identifying plant diseases from camera imagery.',
-        tags: ['Flutter', 'CNN', 'OpenCV'],
-        stats: [
-            { label: 'Inference', value: '0.8s', pct: 90 },
-            { label: 'Accuracy', value: '96%', pct: 96 },
-            { label: 'Platform', value: 'iOS/Android', pct: 100 },
-        ],
-        impact: '96% accuracy in identifying early-stage fungal infections.',
-        vizType: 'leaf',
     },
 ];
 
@@ -336,17 +314,7 @@ const CaseStudy = () => {
                             <p className="case-accent">{project.accent}</p>
                             <p className="case-desc">{project.description}</p>
 
-                            <div className="case-tags">
-                                {project.tags.map((t) => (
-                                    <span key={t} className="tag">{t}</span>
-                                ))}
-                            </div>
-
                             <div className="case-stats">
-                                <div className="case-impact">
-                                    <span className="impact-label">BUSINESS IMPACT</span>
-                                    <p className="impact-value">{project.impact}</p>
-                                </div>
                                 {project.stats.map((s) => (
                                     <div key={s.label} className="case-stat-row">
                                         <div className="case-stat-header">

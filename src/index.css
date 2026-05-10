@@ -24,6 +24,7 @@
   --accent-primary: #2563EB;
   --accent-light: #60A5FA;
   --accent-glow: #3B82F6;
+  --brand-orange: #FF6B00;
 
   /* Functional */
   --green: #22c55e;
@@ -217,6 +218,21 @@ ul {
   padding: 16px 40px;
   font-size: 16px;
   border-radius: var(--radius-lg);
+}
+
+.btn-prominent {
+  background: var(--brand-orange) !important;
+  padding: 19px 48px !important;
+  font-size: 19px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em;
+  box-shadow: 0 10px 30px -5px rgba(255, 107, 0, 0.4);
+}
+
+.btn-prominent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px -5px rgba(255, 107, 0, 0.6);
+  background: #ff7b1a !important;
 }
 
 .btn-primary svg {
