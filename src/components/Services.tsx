@@ -4,30 +4,23 @@ const services = [
     {
         icon: '🤖',
         num: '01',
-        title: 'AI & Automation',
-        description: 'Intelligent agents and automated workflows designed to handle complex business logic without human intervention.',
-        features: ['Custom Agents', 'Multi-Tool Pipelines', 'LLM Integration'],
+        title: 'AI Products',
+        description: 'Custom LLM agents, R&D prototypes, and production-grade AI systems built for scale.',
+        features: ['Custom Agents', 'RAG Systems', 'LLM Integration'],
     },
     {
         icon: '🌐',
         num: '02',
         title: 'Web Systems',
-        description: 'Elite full-stack applications built with Next.js and React for maximum performance and impact.',
-        features: ['Scalable Architecture', 'SEO Optimized', 'Real-time Data'],
+        description: 'High-performance full-stack applications and SaaS platforms built with Next.js and React.',
+        features: ['Scalable Architecture', 'SEO Optimized', 'Premium UI'],
     },
     {
-        icon: '📱',
+        icon: '⚙️',
         num: '03',
-        title: 'Mobile Apps',
-        description: 'Native-feel cross-platform experiences for iOS and Android, built with Flutter and React Native.',
-        features: ['Flutter / React Native', 'Offline Support', 'Push Notifications'],
-    },
-    {
-        icon: '🎨',
-        num: '04',
-        title: 'UI / UX Design',
-        description: 'Premium visual identities and user-centric interfaces that convert visitors into loyal users.',
-        features: ['Brand Identity', 'Prototyping', 'Design Systems'],
+        title: 'Automation',
+        description: 'Deeply integrated workflows and automated pipelines that handle complex business logic.',
+        features: ['Multi-Tool Pipelines', 'API Design', 'Cloud Workflows'],
     },
 ];
 
@@ -36,12 +29,12 @@ const Services = () => {
         <section id="services" className="services section">
             <div className="container">
                 <div className="services-header">
-                    <div className="section-label">What We Build</div>
+                    <div className="section-label">Capabilities</div>
                     <h2 className="section-title">
-                        Full-Stack <span className="gradient-text">Capabilities</span>
+                        What we <span className="gradient-text">build</span>
                     </h2>
                     <p className="section-subtitle">
-                        We build AI-powered digital products across the full stack — from mobile apps to automation systems.
+                        We build AI-powered digital products across the full stack.
                     </p>
                 </div>
 

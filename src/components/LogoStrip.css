@@ -1,0 +1,56 @@
+.logo-strip {
+    padding: 60px 0;
+    background: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.logo-strip .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+.logo-strip .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.8;
+}
+
+.logos-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.logo-item {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-primary);
+    opacity: 0.25;
+    transition: opacity 0.4s ease, filter 0.4s ease;
+    filter: grayscale(100%);
+    letter-spacing: 0.05em;
+}
+
+.logo-item:hover {
+    opacity: 0.8;
+    filter: grayscale(0%);
+}
+
+@media (max-width: 768px) {
+    .logos-grid {
+        gap: 32px;
+    }
+    
+    .logo-item {
+        font-size: 16px;
+    }
+}

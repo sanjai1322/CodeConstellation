@@ -15,7 +15,7 @@ const Hero = () => {
             tl.to('.hero-logo-mark', { opacity: 1, scale: 1, duration: 0.8, delay: 0.2 })
                 .to('.hero-logo-glow', { opacity: 0.6, scale: 1.2, duration: 1.2, ease: 'power2.out' }, '-=0.6')
                 .to('.hero-badge', { opacity: 1, y: 0, duration: 0.6 }, '-=0.7')
-                .to('.title-line', { y: '0%', duration: 1.1, stagger: 0.1 }, '-=0.5')
+                .to('.hero-title', { opacity: 1, y: 0, duration: 1.1 }, '-=0.5')
                 .to('.hero-subtitle', { opacity: 1, y: 0, duration: 0.7 }, '-=0.65')
                 .to('.hero-buttons', { opacity: 1, y: 0, duration: 0.6 }, '-=0.55')
                 .to('.hero-stats', { opacity: 1, duration: 0.5 }, '-=0.4');
@@ -63,33 +63,20 @@ const Hero = () => {
                     </div>
 
                     <h1 className="hero-title">
-                        <div className="title-overflow">
-                            <span className="title-line">We Engineer</span>
-                        </div>
-                        <div className="title-overflow">
-                            <span className="title-line title-accent">The Future</span>
-                        </div>
-                        <div className="title-overflow">
-                            <span className="title-line">Of Digital</span>
-                        </div>
+                        We build AI-first products in 4 weeks.
                     </h1>
 
                     <p className="hero-subtitle">
-                        A developer-led studio designing, building, and shipping 
-                        high-performance AI systems, full-stack apps, and automated workflows 
-                        that drive real business growth.
+                        For ambitious teams. From idea to launch.
                     </p>
 
                     <div className="hero-buttons">
                         <button className="btn-primary btn-xl" onClick={() => scrollTo('contact')}>
-                            Start Your Project
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                <path d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
+                            Start a project →
                         </button>
-                        <button className="btn-secondary btn-xl" onClick={() => scrollTo('work')}>
-                            Explore Case Studies
-                        </button>
+                        <a href="#work" className="hero-link" onClick={(e) => { e.preventDefault(); scrollTo('work'); }}>
+                            View our work
+                        </a>
                     </div>
 
                     <div className="hero-trust">

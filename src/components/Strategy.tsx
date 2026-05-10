@@ -14,10 +14,10 @@ const features = [
 ];
 
 const steps = [
-    { num: '01', title: 'Analyze', desc: 'Requirements Mapping & Tech Audit' },
-    { num: '02', title: 'Architect', desc: 'System Design & UI Prototyping' },
-    { num: '03', title: 'Engineer', desc: 'Full-Stack Dev & AI Integration' },
-    { num: '04', title: 'Deploy', desc: 'CI/CD & Ongoing Iteration' },
+    { num: '01', title: 'Discovery', desc: 'Requirements Mapping & Tech Audit' },
+    { num: '02', title: 'Design', desc: 'System Design & UI Prototyping' },
+    { num: '03', title: 'Build', desc: 'Full-Stack Dev & AI Integration' },
+    { num: '04', title: 'Ship', desc: 'CI/CD & Ongoing Iteration' },
 ];
 
 const Strategy = () => {
@@ -26,9 +26,9 @@ const Strategy = () => {
             <div className="container">
                 <div className="strategy-layout">
                     <div className="strategy-left">
-                        <div className="section-label">Our Strategy</div>
+                        <div className="section-label">Process</div>
                         <h2 className="section-title">
-                            How We <span className="gradient-text">Deliver Value</span>
+                            How we <span className="gradient-text">work</span>
                         </h2>
                         <p className="section-subtitle">
                             We combine deep technical expertise with a product-first mindset to build 

@@ -252,7 +252,7 @@ const Portfolio = () => {
       <div className="portfolio-header">
         <div className="portfolio-label">OUR WORK</div>
         <h2 className="portfolio-title" style={{ fontSize: 'clamp(36px, 5vw, 56px)' }}>
-          Whatever You're Building,<br />
+          Whatever You're Building, <br />
           <span className="gradient-violet">We've Built It.</span>
         </h2>
         <p className="portfolio-subtitle">

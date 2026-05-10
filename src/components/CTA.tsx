@@ -70,10 +70,9 @@ const CTA = () => {
             <div className="container">
                 <div className="cta-layout">
                     <div className="cta-text">
-                        <div className="section-label">Get Started</div>
+                        <div className="section-label">Contact</div>
                         <h2 className="section-title">
-                            Ready to Build Your{' '}
-                            <span className="gradient-text">Next Big Thing?</span>
+                            Start a <span className="gradient-text">project</span>
                         </h2>
                         <p className="cta-description">
                             From prototype to high-performance production systems.

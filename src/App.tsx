@@ -2,11 +2,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Ticker from './components/Ticker';
+import LogoStrip from './components/LogoStrip';
 import Services from './components/Services';
 import CaseStudy from './components/CaseStudy';
-import Portfolio from './components/Portfolio';
-import StudioCulture from './components/StudioCulture';
+import Testimonials from './components/Testimonials';
 import Strategy from './components/Strategy';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
@@ -24,11 +23,10 @@ function MainSite() {
       <Navbar />
       <main>
         <Hero />
-        <Ticker />
+        <LogoStrip />
         <Services />
         <CaseStudy />
-        <Portfolio />
-        <StudioCulture />
+        <Testimonials />
         <Strategy />
         <CTA />
       </main>

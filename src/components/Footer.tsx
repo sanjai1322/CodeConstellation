@@ -13,8 +13,18 @@ const Footer = () => {
                             <span className="footer-logo-text">Code Constellation</span>
                         </div>
                         <p className="footer-description">
-                            A developer-led tech studio engineering production-grade AI systems, apps, and automation for the modern era.
+                            AI-first product studio building apps, automation, and systems for ambitious teams.
                         </p>
+                    </div>
+
+                    <div className="footer-contact">
+                        <h3 className="column-title">Get in touch</h3>
+                        <div className="contact-details">
+                            <p><strong>Email:</strong> <a href="mailto:codeconstellation.business@gmail.com">codeconstellation.business@gmail.com</a></p>
+                            <p><strong>WhatsApp:</strong> <a href="https://wa.me/919047734581">+91 90477 34581</a></p>
+                            <p><strong>Location:</strong> Tamil Nadu, India · Working globally</p>
+                            <p><strong>Hours:</strong> Mon-Fri, 10:00-19:00 IST</p>
+                        </div>
                     </div>
 
                     <div className="footer-column">
@@ -24,15 +34,6 @@ const Footer = () => {
                             <a href="#services">Services</a>
                             <a href="#work">Work</a>
                             <a href="#process">Process</a>
-                        </nav>
-                    </div>
-
-                    <div className="footer-column">
-                        <h3 className="column-title">Connect</h3>
-                        <nav className="column-links">
-                            <a href="mailto:codeconstellation.business@gmail.com">Business</a>
-                            <a href="https://wa.me/919047734581" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                            <a href="https://www.instagram.com/codeconstellation" target="_blank" rel="noopener noreferrer">Instagram</a>
                         </nav>
                     </div>
                 </div>

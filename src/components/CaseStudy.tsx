@@ -16,82 +16,66 @@ interface Project {
 const projects: Project[] = [
     {
         id: 'agrisense',
-        label: 'AI + Agriculture',
-        title: 'AgriSense-PINN',
-        accent: 'Physics-Informed Neural Network',
+        label: 'AI Automation',
+        title: 'AgriSense-AI',
+        accent: 'Precision Agriculture System',
         description:
-            'Physics-Informed Neural Network for precision agriculture — predicting crop health using satellite imagery and soil sensor data.',
-        tags: ['PyTorch', 'PINN', 'Satellite Data', 'Precision Ag'],
+            'Predictive modeling for crop health using satellite imagery and real-time soil data.',
+        tags: ['PyTorch', 'Satellite Data', 'Precision Ag'],
         stats: [
-            { label: 'Prediction Accuracy', value: '94%', pct: 94 },
+            { label: 'Built In', value: '3 Weeks', pct: 100 },
             { label: 'Data Sources', value: '12+', pct: 80 },
-            { label: 'Processing Speed', value: '3.2s', pct: 70 },
+            { label: 'Impact', value: '22% Efficiency', pct: 70 },
         ],
-        impact: 'Reduced fertilizer waste by 22% for pilot farms.',
+        impact: 'Reduced operational costs by 22% for pilot farms.',
         vizType: 'orbits',
     },
     {
         id: 'exoplanet',
-        label: 'AI + Astrophysics',
-        title: 'ExoAtmos-AI',
-        accent: 'Atmospheric Gas Detection',
+        label: 'Research Tools',
+        title: 'ExoAtmos-ML',
+        accent: 'Scientific Data Dashboard',
         description:
-            'Machine learning system for identifying atmospheric molecules like H₂O, CH₄, and CO₂ in exoplanet transit spectra.',
-        tags: ['TensorFlow', 'Spectroscopy', 'CNN', 'NumPy', 'SciPy'],
+            'Production-ready dashboard for identifying atmospheric molecules in exoplanet spectra.',
+        tags: ['TensorFlow', 'Spectroscopy', 'React'],
         stats: [
-            { label: 'Gas Detection', value: '87%', pct: 87 },
-            { label: 'Molecules Tracked', value: '6+', pct: 60 },
-            { label: 'Noise Reduction', value: '72%', pct: 72 },
+            { label: 'Deployment', value: '14 Days', pct: 100 },
+            { label: 'Molecules', value: '6+', pct: 60 },
+            { label: 'Analysis', value: '10x Faster', pct: 72 },
         ],
-        impact: 'Accelerated data analysis by 10x compared to manual methods.',
+        impact: 'Accelerated research analysis by 10x for the astrophysics team.',
         vizType: 'waveform',
     },
     {
-        id: 'spaceweather',
-        label: 'AI + Space Weather',
-        title: 'SolarGuard-ML',
-        accent: 'Geomagnetic Storm Prediction',
+        id: 'novascan',
+        label: 'Internal Product',
+        title: 'NovaScan-AI',
+        accent: 'Automated Audit Platform',
         description:
-            'AI-powered platform monitoring solar activity and predicting geomagnetic disturbances using LSTM networks.',
-        tags: ['PyTorch', 'LSTM', 'Time-Series', 'Plotly', 'Pandas'],
+            'AI-powered website audit tool providing structural and content feedback in seconds.',
+        tags: ['Next.js', 'Puppeteer', 'Gemini AI'],
         stats: [
-            { label: 'Storm Prediction', value: '91%', pct: 91 },
-            { label: 'Lead Time', value: '48h', pct: 85 },
-            { label: 'Data Points', value: '1.2M', pct: 78 },
+            { label: 'Users', value: '500+', pct: 85 },
+            { label: 'Audit Time', value: '45s', pct: 95 },
+            { label: 'Accuracy', value: '98%', pct: 98 },
         ],
-        impact: 'Enabled 48h early-warning window for satellite operators.',
+        impact: 'Scaled internal audit processes by 5x while maintaining quality.',
         vizType: 'solar',
     },
     {
-        id: 'lunarenhance',
-        label: 'AI + Lunar Science',
-        title: 'LunarVision-DL',
-        accent: 'Satellite Image Enhancement',
-        description:
-            'Deep learning system enhancing low-light satellite images from lunar permanently shadowed regions.',
-        tags: ['OpenCV', 'U-Net', 'Image Processing', 'NumPy'],
-        stats: [
-            { label: 'Detail Recovery', value: '89%', pct: 89 },
-            { label: 'Noise Suppression', value: '76%', pct: 76 },
-            { label: 'Feature Clarity', value: '4.2×', pct: 84 },
-        ],
-        impact: 'Revealed previously invisible crater features in PSR regions.',
-        vizType: 'grid',
-    },
-    {
         id: 'leafcare',
-        label: 'AI + Agriculture',
-        title: 'LeafCare-CNN',
-        accent: 'Plant Disease Detection',
+        label: 'Mobile App',
+        title: 'LeafCare-App',
+        accent: 'Disease Detection System',
         description:
-            'Convolutional neural network identifying plant leaf diseases from images — detecting bacterial spots and blight.',
-        tags: ['TensorFlow', 'Keras', 'CNN', 'OpenCV'],
+            'Cross-platform mobile application identifying plant diseases from camera imagery.',
+        tags: ['Flutter', 'CNN', 'OpenCV'],
         stats: [
-            { label: 'Classification', value: '96%', pct: 96 },
-            { label: 'Disease Classes', value: '12', pct: 65 },
-            { label: 'Inference Time', value: '0.8s', pct: 90 },
+            { label: 'Inference', value: '0.8s', pct: 90 },
+            { label: 'Accuracy', value: '96%', pct: 96 },
+            { label: 'Platform', value: 'iOS/Android', pct: 100 },
         ],
-        impact: '98% accuracy in identifying early-stage fungal infections.',
+        impact: '96% accuracy in identifying early-stage fungal infections.',
         vizType: 'leaf',
     },
 ];
@@ -312,7 +296,7 @@ const CaseStudy = () => {
                 <div className="case-header">
                     <div className="section-label">Our Work</div>
                     <h2 className="section-title">
-                        Case <span className="gradient-text">Studies</span>
+                        Selected <span className="gradient-text">work</span>
                     </h2>
                     <p className="section-subtitle">
                         AI-powered systems solving real scientific and engineering challenges.
@@ -322,14 +306,15 @@ const CaseStudy = () => {
                 {/* ── Tab Selectors ── */}
                 <div className="case-tabs">
                     {projects.map((p, i) => (
-                        <button
+                        <a
                             key={p.id}
+                            href="#"
                             className={`case-tab ${i === activeIndex ? 'case-tab-active' : ''}`}
-                            onClick={() => handleTabClick(i)}
+                            onClick={(e) => { e.preventDefault(); handleTabClick(i); }}
                         >
                             <span className="tab-label">{p.label}</span>
                             <span className="tab-title">{p.title}</span>
-                        </button>
+                        </a>
                     ))}
                 </div>
 
@@ -368,16 +353,13 @@ const CaseStudy = () => {
                                             <span className="case-stat-label">{s.label}</span>
                                             <span className="case-stat-value">{s.value}</span>
                                         </div>
-                                        <div className="case-bar">
-                                            <div
-                                                className="case-bar-fill"
-                                                style={{ width: `${s.pct}%` }}
-                                            />
-                                        </div>
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                            <a href="#contact" className="case-link" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>
+                                View case study →
+                            </a>
+                            </div>
 
                         <div className="case-visual">
                             <Viz />
@@ -389,10 +371,11 @@ const CaseStudy = () => {
                 <div className="swipe-indicator">
                     <div className="swipe-dots">
                         {projects.map((_, i) => (
-                            <button
+                            <span
                                 key={i}
                                 className={`swipe-dot ${i === activeIndex ? 'swipe-dot-active' : ''}`}
                                 onClick={() => setActiveIndex(i)}
+                                role="button"
                                 aria-label={`Go to project ${i + 1}`}
                             />
                         ))}
